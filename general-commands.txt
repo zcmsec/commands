@@ -1,0 +1,2 @@
+Instalacja z paczki deb:
+apt install ./smartgit-19_1_6.deb
