@@ -1,0 +1,12 @@
+Uruchomienie webgoat:
+java -jar webgoat-server-8.0.0.M26.jar [--server.port=8080] [--server.address=localhost]
+
+
+
+
+
+
+
+
+Dobry Filmik do instalacji DVWA:
+https://www.youtube.com/watch?v=R_afVZsC9NQ
