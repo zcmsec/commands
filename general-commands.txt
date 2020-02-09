@@ -1,2 +1,9 @@
-Instalacja z paczki deb:
-apt install ./smartgit-19_1_6.deb
+w nano /etc/apt/sources.list
+wklej :
+deb http://http.kali.org/kali kali-rolling main non-free contrib
+deb-src http://http.kali.org/kali kali-rolling main non-free contrib
+
+apt-get remove --purge libgcj-common (usuniecie niezainstalowanej paczki, ktora jest w chache)
+
+Menadżer pakietow SYNAPTIC:
+apt-get install synaptic

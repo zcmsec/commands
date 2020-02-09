@@ -1,0 +1,5 @@
+https://pentest-tools.com/information-gathering/google-hacking#  --> pomoc w google hacking
+https://www.acunetix.com/blog/web-security-zone/test-xss-skills-vulnerable-sites/
+https://owasp.org/www-community/attacks/xss/
+
+https://clara10101.github.io/StacjaIT_Warsztat_09022020/#/3

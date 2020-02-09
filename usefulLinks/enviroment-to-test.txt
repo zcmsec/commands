@@ -1,0 +1,5 @@
+https://portswigger.net/web-security
+https://pentesterlab.com/pro
+
+
+https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
